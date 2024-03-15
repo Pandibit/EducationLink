@@ -57,3 +57,6 @@ def homepage(request):
 def user_logout(request):
     auth.logout(request)
     return redirect("")
+
+def posts(request):
+    return render(request, "posts.html")
