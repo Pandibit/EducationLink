@@ -1,8 +1,9 @@
+{% load static  %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script
@@ -13,359 +14,690 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-</head>
-<body>
-    <div class="min-h-full">
-        <div class="bg-blue-600 pb-32">
-          <nav
-            class="bg-blue-600 border-b border-indigo-300 border-opacity-25 lg:border-none"
+    <script src="{% static "js/posts.js" %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body class="bg-white">
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div>
+      <div>
+
+        <!--  a New post modal -->
+        <div
+        id="modal-create"
+        class="fixed z-10 inset-0 overflow-y-auto hidden"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+        
+          <div
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            aria-hidden="true"
+          ></div>
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
           >
-            <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-              <div
-                class="relative h-16 flex items-center justify-between lg:border-b lg:border-blue-400 lg:border-opacity-25"
-              >
-                <div class="px-2 flex items-center lg:px-0">
-                  <div class="flex-shrink-0">
-                    <img
-                      class="block h-8 w-8"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-300.svg"
-                      alt="Workflow"
-                    />
-                  </div>
-                  <div class="hidden lg:block lg:ml-10">
-                    <div class="flex space-x-4">
-                      <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" -->
-                      <a
-                        href="#"
-                        class="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium"
-                        aria-current="page"
-                      >
-                        Dashboard
-                      </a>
-  
-                      <a
-                        href="#"
-                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
-                      >
-                        Posts
-                      </a>
-  
-                      <a
-                        href="#"
-                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
-                      >
-                        Chatroom
-                      </a>
-  
-                      <a
-                        href="#"
-                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
-                      >
-                        Classes
-                      </a>
-  
-                      <a
-                        href="#"
-                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
-                      >
-                        Calendar
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                
-                <div id="mobile-menu" class="flex lg:hidden">
-                  <!-- Mobile menu button -->
-                  <button
-                    type="button"
-                    class="bg-blue-600 p-2 rounded-md inline-flex items-center justify-center text-indigo-200 hover:text-white hover:bg-blue-500 hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white"
-                    aria-controls="mobile-menu"
-                    aria-expanded="false"
-                    id="toggle-mobile-menu"
+
+         
+          <div
+            class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+          >
+            <div>
+              <div class="mt-3 text-center sm:mt-5">
+                <div class="flex justify-start">
+                  <h3
+                    class="text-lg leading-6 font-medium text-gray-900"
+                    
                   >
-                    <span class="sr-only">Open main menu</span>
-                    <!--
-                      Heroicon name: outline/menu
-      
-                      Menu open: "hidden", Menu closed: "block"
-                    -->
-                    <svg
-                      class="block h-6 w-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"
-                      />
-                    </svg>
-                    <!--
-                      Heroicon name: outline/x
-      
-                      Menu open: "block", Menu closed: "hidden"
-                    -->
-                    <svg
-                      class="hidden h-6 w-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
+                    Add a new post
+                  </h3>
                 </div>
-                <div class="hidden lg:block lg:ml-4">
-                  <div class="flex items-center">
-                    <button
-                      type="button"
-                      class="bg-indigo-600 flex-shrink-0 rounded-full p-1 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white"
-                    >
-                      <span class="sr-only">View notifications</span>
-                      <!-- Heroicon name: outline/bell -->
-                      <svg
-                        class="h-6 w-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                <div class="mt-2">
+                  <div class="flex justify-start mb-3">
+                    <p class="text-sm text-gray-500">
+                      Start here to add a new post 
+                    </p>
+                  </div>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                  <div class="flex flex-col space-y-3">
+                    <div class="flex flex-col justify-start space-y-5">
+                      <div class="relative mt-1">
+                        <input
+                          type="text"
+                          name="name"
+                          id="subject"
+                          class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
+                          placeholder="Related to"
                         />
-                      </svg>
-                    </button>
-  
-                    <!-- Profile dropdown -->
-                    <div class="ml-3 relative flex-shrink-0">
-                      <div>
-                        <button
-                          type="button"
-                          class="bg-indigo-600 rounded-full flex text-sm text-white focus:outline-none"
-                          id="user-menu-button"
-                          aria-expanded="false"
-                          aria-haspopup="true"
-                        >
-                          <span class="sr-only">Open user menu</span>
-                          <img
-                            class="rounded-full h-8 w-8"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt=""
-                          />
-                        </button>
-                      </div>
-  
-                      <!--
-                        Dropdown menu, show/hide based on menu state.
-      
-                        Entering: "transition ease-out duration-100"
-                          From: "transform opacity-0 scale-95"
-                          To: "transform opacity-100 scale-100"
-                        Leaving: "transition ease-in duration-75"
-                          From: "transform opacity-100 scale-100"
-                          To: "transform opacity-0 scale-95"
-                      -->
-                      <div
-                        id="user-menu"
-                        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="user-menu-button"
-                        tabindex="-1"
-                      >
-                        <!-- Active: "bg-gray-100", Not Active: "" -->
-                        <a
-                          href="#"
-                          class="block py-2 px-4 text-sm text-gray-700"
-                          role="menuitem"
-                          tabindex="-1"
-                          id="user-menu-item-0"
-                        >
-                          Your Profile
-                        </a>
-  
-                        <a
-                          href="#"
-                          class="block py-2 px-4 text-sm text-gray-700"
-                          role="menuitem"
-                          tabindex="-1"
-                          id="user-menu-item-1"
-                        >
-                          Settings
-                        </a>
-  
-                        <a
-                          href="{% url 'user_logout' %}"
-                          class="block py-2 px-4 text-sm text-gray-700"
-                          role="menuitem"
-                          tabindex="-1"
-                          id="user-menu-item-2"
-                        >
-                          Sign out
-                        </a>
                       </div>
                     </div>
-                  </div>
+
+                    <div class="flex flex-col justify-start space-y-1">
+                      <div class="mt-1">
+                        <input
+                          type="text"
+                          name="name"
+                          id="short-description"
+                          class="block  w-full placeholder-blue-650 border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 focus::placeholder { color: blue; } text-sm h-15 px-4 py-2"
+                          placeholder="Short description"
+                          
+                        />
+                      </div>
+                    </div>
+
+              
+
+                    <div class="flex flex-col justify-start">
+                      <div class="flex items-center justify-center w-full">
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 " id="dropzone-file" type="file">
+                      </div> 
+                    </div>
+                  
                 </div>
               </div>
             </div>
-  
-            <!-- Mobile menu, show/hide based on menu state. -->
-            <div class="lg:hidden" id="mobile-menu">
-              <div class="px-2 pt-2 pb-3 space-y-1">
-                <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" -->
+            <div
+              class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense"
+            >
+              <button
+                type="button"
+                id="enterButton"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 sm:col-start-2 sm:text-sm"
+              >
+                Enter
+              </button>
+              <button
+                type="button"
+                id="cancelButton"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-150 sm:mt-0 sm:col-start-1 sm:text-sm"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      </div>
+      <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between h-16">
+            <div class="flex">
+              <div class="flex-shrink-0 flex items-center">
+                <img
+                  class="block lg:hidden h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                  alt="Workflow"
+                />
+                <img
+                  class="hidden lg:block h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+                  alt="Workflow"
+                />
+              </div>
+              <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                 <a
-                  href="#"
-                  class="bg-indigo-700 text-white block rounded-md py-2 px-3 text-base font-medium"
-                  aria-current="page"
+                  href="{% url 'homepage' %}"
+                  class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
-                  Dashboard
+                  Home
                 </a>
-  
                 <a
-                  href="#"
-                  class="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
+                  href="{% url 'posts' %}"
+                  class="{% if request.path == '/posts' %}border-indigo-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Posts
                 </a>
-  
                 <a
-                  href="#"
-                  class="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
+                  href="{% url 'chatroom' %}"
+                  class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Chatroom
                 </a>
-  
                 <a
-                  href="#"
-                  class="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
+                  href="{% url 'classes' %}"
+                  class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
-                  Calendar
+                  Classes
                 </a>
-  
                 <a
-                  href="#"
-                  class="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
+                  href="{% url 'quiz' %}"
+                  class="{% if request.path == '/quiz' %}border-indigo-500{% else %}border-transparent{% endif %} text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
-                  Reports
+                  Quizes
                 </a>
+                
+
+                
               </div>
-              <div class="pt-4 pb-3 border-t border-indigo-700">
-                <div class="px-5 flex items-center">
-                  <div class="flex-shrink-0">
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+              <button
+                type="button"
+                class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                <span class="sr-only">View notifications</span>
+                <!-- Heroicon name: outline/bell -->
+                <svg
+                  class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+              </button>
+
+              <!-- Profile dropdown -->
+              <div class="ml-3 relative">
+                <div>
+                  <button
+                    id="user-menu-button"
+                    type="button"
+                    class="bg-white rounded-full flex text-sm"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <span class="sr-only">Open user menu</span>
                     <img
-                      class="rounded-full h-10 w-10"
+                      class="h-8 w-8 rounded-full"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     />
-                  </div>
-                  <div class="ml-3">
-                    <div class="text-base font-medium text-white">Tom Cook</div>
-                    <div class="text-sm font-medium text-indigo-300">
-                      tom@example.com
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    class="ml-auto bg-indigo-600 flex-shrink-0 rounded-full p-1 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white"
-                  >
-                    <span class="sr-only">View notifications</span>
-                    <!-- Heroicon name: outline/bell -->
-                    <svg
-                      class="h-6 w-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                      />
-                    </svg>
                   </button>
                 </div>
-                <div class="mt-3 px-2 space-y-1">
+
+                <!--
+                Dropdown menu, show/hide based on menu state.
+    
+                Entering: "transition ease-out duration-200"
+                    From: "transform opacity-0 scale-95"
+                    To: "transform opacity-100 scale-100"
+                Leaving: "transition ease-in duration-75"
+                    From: "transform opacity-100 scale-100"
+                    To: "transform opacity-0 scale-95"
+                -->
+                <div
+                  id="user-menu"
+                  class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  
+                  tabindex="-1"
+                >
+                  <!-- Active: "bg-gray-100", Not Active: "" -->
                   <a
                     href="#"
-                    class="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
+                    class="block px-4 py-2 text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-0"
+                    >Your Profile</a
                   >
-                    Your Profile
-                  </a>
-  
                   <a
                     href="#"
-                    class="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
+                    class="block px-4 py-2 text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-1"
+                    >Settings</a
                   >
-                    Settings
-                  </a>
-  
                   <a
                     href="#"
-                    class="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
+                    class="block px-4 py-2 text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-2"
+                    >Sign out</a
                   >
-                    Sign out
-                  </a>
                 </div>
               </div>
             </div>
-          </nav>
-          <header class="py-10">
-            
-          </header>
-        </div>
-        <script>
-            const userMenuButton = document.getElementById("user-menu-button");
-      const userMenu = document.getElementById("user-menu");
-
-      // Initially hide the user menu
-      userMenu.style.display = "none";
-
-      userMenuButton.addEventListener("click", function (event) {
-        // Toggle the display property of the user menu
-        if (userMenu.style.display === "none") {
-          userMenu.style.display = "block";
-        } else {
-          userMenu.style.display = "none";
-        }
-        // Prevent the click event from propagating further
-        event.stopPropagation();
-      });
-
-      // Add event listener to the document body
-      document.body.addEventListener("click", function (event) {
-        // Check if the click event target is not the user menu button or the user menu itself
-        if (
-          event.target !== userMenuButton &&
-          event.target !== userMenu &&
-          !userMenu.contains(event.target)
-        ) {
-          // Hide the user menu
-          userMenu.style.display = "none";
-        }
-      });
-
-
-      
-        </script>
+            <div class="-mr-2 flex items-center sm:hidden">
+              <!-- Mobile menu button -->
+              <button
+                id="user-menu-button"
+                type="button"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+                onclick="toggleMenu()"
+              >
+                <span class="sr-only">Open main menu</span>
+              
+                
+                <svg
+                  class="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+                
+                
     
-</body>
+                
+               
+                <svg
+                  class="hidden h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu-->
+        <div  class="sm:hidden " id="mobile-menu" >
+          <div class="pt-2 pb-3 space-y-1">
+      
+            <a
+              href="{% url 'homepage' %}"
+              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              >Home</a
+            >
+            <a
+              href="{% url 'posts' %}"
+              class="{% if request.path == '/posts' %}border-indigo-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              >Posts</a
+            >
+            <a
+              href="{% url 'chatroom' %}"
+              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              >Chatroom</a
+            >
+            <a
+              href="{% url 'classes' %}"
+              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              >Classes</a
+            >
+
+            <a
+              href="{% url 'quiz' %}"
+              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              >Quizes</a
+            >
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-4">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium text-gray-800">Tom Cook</div>
+                <div class="text-sm font-medium text-gray-500">
+                  tom@example.com
+                </div>
+              </div>
+              <button
+                type="button"
+                class="ml-auto flex-shrink-0 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                <span class="sr-only">View notifications</span>
+              
+                <svg
+                  class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-3 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                >Your Profile</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                >Settings</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                >Sign out</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+
+     
+      
+      <div>
+          {% if posts %}
+          <button id="newpost-hasposts" type="button" class="z-50 fixed bottom-0 right-0 mb-10 mr-10 inline-flex items-center px-2 py-2 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700">
+            <!-- Heroicon name: outline/plus-sm -->
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+          </button>
+        <!-- Render the posts here -->
+        <!-- Example code to display posts -->
+        
+            
+            <div>
+             
+              <ul
+                role="list"
+                class="p-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+              > 
+              {% for post in posts %}
+                <li
+                  class="col-span-1 border-2 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
+                >
+                  <div class="flex-1 flex flex-col p-5">
+                    {% if post.dropzone_file %}
+                      {% with post.dropzone_file.url as file_url %}
+                          {% if file_url|lower|slice:"-4:" == '.jpg' or file_url|lower|slice:"-4:" == '.png' or file_url|lower|slice:"-4:" == '.gif' or file_url|lower|slice:"-5:" == '.jpeg' %}
+                              <!-- Display the image if it's a supported image file -->
+                              <img
+                      class="w-40 h-32 flex-shrink-0 mx-auto rounded-md"
+                      src="{{ file_url }}"
+                      alt=""
+                    />
+                          {% else %}
+                              <!-- Display a link to the file if it's not an image -->
+                              <div class="relative"><a href="{{ file_url }}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{post.dropzone_file}}</a></div>
+                          {% endif %}
+                      {% endwith %}
+                    {% endif %}
+                    
+                    <h3 class="mt-6 text-gray-900 text-sm font-medium">{{ post.short_description }}</h3>
+                    <dl class="mt-1 flex-grow flex flex-col justify-between">
+                     
+                      <dt class="sr-only">Role</dt>
+                      <dd class="mt-3">
+                        <span
+                          class="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full"
+                          >{{ post.subject }}</span
+                        >
+                      </dd>
+                    </dl>
+                    <dl class="mt-1 flex-grow flex flex-col justify-between">
+                     
+                      <dt class="sr-only">Role</dt>
+                      <dd class="mt-3">
+                        <span
+                          class="px-2 py-1 text-blue-500 text-xs font-medium bg-blue-100 rounded-full"
+                          >{{ post.created_at }}</span
+                        >
+                      </dd>
+                    </dl>
+                  </div>
+                  <div class="-mt-px flex divide-x divide-gray-200">
+                    <div class="w-0 flex-1 flex">
+                      <button  class="delete-post-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-red-700 font-medium border border-transparent rounded-bl-lg hover:text-red-500">
+                         
+                        <ion-icon name="trash-outline"></ion-icon>
+                        <span class="ml-3" >Delete</span>
+                      </button>
+                    </div>
+                    <div class="-ml-px w-0 flex-1 flex">
+                      <button  class="edit-post-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-blue-800 font-medium border border-transparent rounded-br-lg hover:text-blue-500">
+                        <!-- Heroicon name: solid/phone -->
+                        <ion-icon name="pencil-outline"></ion-icon>
+                        <span class="ml-3">Edit</span>
+                      </button>
+                    </div>
+                  </div>
+                  
+                </li>
+      {% endfor %}
+              
+              </ul>
+            </div>
+
+            <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="delete-post-modal" role="dialog" aria-modal="true">
+              <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <!--
+                  Background overlay, show/hide based on modal state.
+            
+                  Entering: "ease-out duration-300"
+                    From: "opacity-0"
+                    To: "opacity-100"
+                  Leaving: "ease-in duration-200"
+                    From: "opacity-100"
+                    To: "opacity-0"
+                -->
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+                <!--
+                  Modal panel, show/hide based on modal state.
+            
+                  Entering: "ease-out duration-300"
+                    From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    To: "opacity-100 translate-y-0 sm:scale-100"
+                  Leaving: "ease-in duration-200"
+                    From: "opacity-100 translate-y-0 sm:scale-100"
+                    To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                -->
+                <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                  <div class="sm:flex sm:items-start">
+                    <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                      <!-- Heroicon name: outline/exclamation -->
+                      <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Delete your post</h3>
+                      <div class="mt-2">
+                        <p class="text-sm text-gray-500">Are you sure you want to delete your post? This action cannot be undone.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                    <button type="button" data-post-id="{{ post.id }}" id="confirm" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none  sm:ml-3 sm:w-auto sm:text-sm">Delete</button>
+                    <button type="button" id="cancel" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none  sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+            id="post-update-modal"
+            class=" fixed z-10 inset-0 overflow-y-auto hidden "
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+            >
+            <div
+              class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            >
+            
+              <div
+                class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                aria-hidden="true"
+              ></div>
+    
+              <!-- This element is to trick the browser into centering the modal contents. -->
+              <span
+                class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                aria-hidden="true"
+                >&#8203;</span
+              >
+    
+             
+              <div
+                class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+              >
+                <div>
+                  <div class="mt-3 text-center sm:mt-5">
+                    <div class="flex justify-start">
+                      <h3
+                        class="text-lg leading-6 font-medium text-gray-900"
+                        
+                      >
+                        Update the existing post
+                      </h3>
+                    </div>
+                    <div class="mt-2">
+                      <div class="flex justify-start mb-3">
+                        <p class="text-sm text-gray-500">
+                          Start here to update the existing post 
+                        </p>
+                      </div>
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                      <div class="flex flex-col space-y-3">
+                        <div class="flex flex-col justify-start space-y-5">
+                          <div class="relative mt-1">
+                            <input
+                              type="text"
+                              name="name"
+                              id="subject"
+                              class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
+                              placeholder="Related to"
+                            />
+                          </div>
+                        </div>
+    
+                        <div class="flex flex-col justify-start space-y-1">
+                          <div class="mt-1">
+                            <input
+                              type="text"
+                              name="name"
+                              id="short-description"
+                              class="block  w-full placeholder-blue-650 border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 focus::placeholder { color: blue; } text-sm h-15 px-4 py-2"
+                              placeholder="Short description"
+                              
+                            />
+                          </div>
+                        </div>
+    
+                  
+    
+                        <div class="flex flex-col justify-start">
+                          <div class="flex items-center justify-center w-full">
+                            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 " id="dropzone-file" type="file">
+                          </div> 
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense"
+                >
+                  <button
+                    type="button"
+                    id="enterButton"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 sm:col-start-2 sm:text-sm"
+                  >
+                    Enter
+                  </button>
+                  <button
+                    type="button"
+                    id="cancelButtonupdate"
+                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-150 sm:mt-0 sm:col-start-1 sm:text-sm"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+          
+                
+                    
+                
+    {% else %}
+        <!-- Render the "No posts" div if there are no posts in the database -->
+        <div class="flex p-5 mr-2 justify-center items-center">
+            <div class="text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                </svg>
+                <h3 class="mt-2 text-sm font-medium text-gray-900">No posts</h3>
+                <p class="mt-1 text-sm text-gray-500">Get started by creating a new post</p>
+                <div class="mt-6">
+                    <button type="button" id="newpost-btn" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
+                        </svg>
+                        New Post
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+        </div>
+
+       
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    // Get a reference to the modal
+    var modal = document.getElementById('modal-create');
+
+    // Get a reference to the button that triggers the modal
+    var newPostButton = document.getElementById('newpost-hasposts');
+
+    // Add event listener to the button
+    newPostButton.addEventListener('click', function() {
+        // Toggle the display of the modal
+        modal.classList.toggle('hidden');
+    });
+});
+    </script>
+    
+  </body>
 </html>
