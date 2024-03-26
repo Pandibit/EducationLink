@@ -63,6 +63,50 @@ document.addEventListener("DOMContentLoaded", function () {
     return cookieValue;
   }
 
+
+  function showNotification(message) {
+    // Create notification panel
+    const notificationPanel = document.createElement('div');
+    notificationPanel.classList.add('fixed', 'inset-0', 'flex', 'items-end', 'px-4', 'py-6', 'pointer-events-none', 'sm:p-6', 'sm:items-start');
+    notificationPanel.setAttribute('aria-live', 'assertive');
+  
+    // Inner content
+    notificationPanel.innerHTML = `
+      <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+        <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+          <div class="p-4">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <!-- Success icon -->
+                <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="ml-3 w-0 flex-1 pt-0.5">
+                <p class="text-sm font-medium text-gray-900">${message}</p>
+              </div>
+              <div class="ml-4 flex-shrink-0 flex">
+                <button class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <span class="sr-only">Close</span>
+                  <!-- Close icon -->
+                  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  
+    // Append notification panel to the body
+    document.body.appendChild(notificationPanel);
+  }
+  
+  
+  
+
   // Event listener for the Enter button
   enterButton.addEventListener("click", function () {
     // Collect input values
@@ -88,9 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => {
         if (response.ok) {
-          alert("Post saved successfully!");
-          location.reload()
-
+          showNotification("Successfully created post!")
+          location.reload();
           modal.classList.add("hidden"); // Hide the modal
         } else {
           throw new Error("Error occurred while saving post");
@@ -172,35 +215,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Deleting the post and using ajax to send them to the view
-document.querySelectorAll('.delete-post-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        // Get the post ID from the data attribute
-        const postId = this.getAttribute('data-post-id');
-        
-        // Send a DELETE request to the server to delete the post
-        fetch(`/delete_post`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token
-            },
-            body: JSON.stringify({post_id: postId}), // Send post ID in JSON format
-        })
-        .then(response => {
-            if (response.ok) {
-                // Post was deleted successfully
-                alert('Post deleted successfully!');
-                // Remove the deleted post from the DOM
-                this.closest('.col-span-1').remove();
-            } else {
-                // Error occurred while deleting the post
-                throw new Error('Error deleting post');
-            }
-        })
-        .catch(error => {
-            // Handle errors
-            console.error('Error:', error);
-            alert('An error occurred while deleting the post. Please try again later.');
-        });
-    });
-});
+
+
+
+
+
+

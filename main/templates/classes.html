@@ -1,3 +1,4 @@
+{% load static  %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,6 +14,7 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+    <script src="{% static "js/classes.js" %}"></script>
   </head>
   <body class="bg-white">
     <!-- This example requires Tailwind CSS v2.0+ -->
@@ -94,7 +96,7 @@
                       <input
                         type="text"
                         name="name"
-                        id="name"
+                        id="className"
                         class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Class name(required) "
                       />
@@ -106,7 +108,7 @@
                       <input
                         type="text"
                         name="name"
-                        id="name"
+                        id="section"
                         class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Section"
                       />
@@ -119,7 +121,7 @@
                       <input
                         type="text"
                         name="name"
-                        id="name"
+                        id="subject"
                         class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Subject"
                       />
@@ -131,7 +133,7 @@
                       <input
                         type="text"
                         name="name"
-                        id="name"
+                        id="room"
                         class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Room"
                       />
@@ -141,16 +143,8 @@
                   
                   <div class="flex flex-col justify-start">
                     <div class="flex items-center justify-center w-full">
-                      <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-white-50  hover:bg-gray-100 ">
-                          <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                              <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                              </svg>
-                              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                              <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                          </div>
-                          <input id="dropzone-file" type="file" class="hidden" placeholder="Class image" />
-                      </label>
+                      <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none " aria-describedby="file_input_help" id="file_input" type="file">
+
                     </div> 
                   </div>
 
@@ -162,6 +156,7 @@
             >
               <button
                 type="button"
+                id="enterButton"
                 class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 sm:col-start-2 sm:text-sm"
               >
                 Enter
@@ -385,7 +380,8 @@
                     <span class="sr-only">Open user menu</span>
                     <img
                       class="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src="{% if user.avatar.image %}{{ user.avatar.image.url }}{% else %}https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80{% endif %}"
+
                       alt=""
                     />
                   </button>
@@ -580,54 +576,64 @@
         </div>
       </nav>
       <div>
+             
         <ul
           role="list"
           class="p-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-        >
-          <li
-            class="col-span-1 border-2 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
-          >
-            <div class="flex-1 flex flex-col p-8">
-              <img
-                class="w-32 h-32 flex-shrink-0 mx-auto rounded-full"
-                src="https://images.pexels.com/photos/167682/pexels-photo-167682.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
-              />
-              <h3 class="mt-6 text-gray-900 text-sm font-medium">Maths</h3>
-              <dl class="mt-1 flex-grow flex flex-col justify-between">
-                <dt class="sr-only">Title</dt>
-                <dd class="text-gray-500 text-sm">
-                  This class is related to the most beautiful subject in the world
-                </dd>
-                <dt class="sr-only">Role</dt>
-                <dd class="mt-3">
-                  <span
-                    class="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full"
-                    >Pandush Bitallari</span
-                  >
-                </dd>
-              </dl>
+        > 
+        {% for class in classes %}
+        <li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
+          <div class="w-full flex items-center justify-between p-6 space-x-6">
+            <div class="flex-1 truncate">
+              <div class="flex items-center space-x-3">
+                <h3 class="text-gray-900 text-sm font-medium truncate">{{ class.name }}</h3>
+                <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ class.user }}</span>
+              </div>
+              <p class="mt-1 text-gray-500 text-sm truncate">{{ class.section }}</p>
+              
             </div>
-            <div>
-              <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="-ml-px w-0 flex-1 flex">
-                  <a
-                    href="#"
-                    class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
-                  >
-                    <!-- Heroicon name: solid/phone -->
-                    <ion-icon
-                      name="chevron-down-circle-outline"
-                      class="text-2xl font-bold"
-                    ></ion-icon>
-                    <span class="ml-3">Jump in</span>
-                  </a>
-                </div>
+            {% if class.class_photo %}
+    {% with class.class_photo.url as file_url %}
+        {% if file_url|lower|slice:"-4:" == '.jpg' or file_url|lower|slice:"-5:" == '.jpeg' or file_url|lower|slice:"-4:" == '.png' %}
+            <!-- Display the image if it's a supported image file -->
+            <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="{{ file_url }}" alt="">
+        {% elif file_url|lower|slice:"-4:" == '.svg' %}
+            <!-- Display the SVG file using the object tag -->
+            <object class="w-40 h-32 flex-shrink-0 mx-auto" data="{{ file_url }}" type="image/svg+xml"></object>
+        {% else %}
+            <!-- Display a link to the file if it's not an image or SVG -->
+            <div class="relative"><a href="{{ file_url }}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ class.class_photo }}</a></div>
+        {% endif %}
+    {% endwith %}
+{% endif %}
+
+            
+          </div>
+          <div>
+            <div class="-mt-px flex divide-x divide-gray-200">
+              <div class="w-0 flex-1 flex">
+                <button class=" relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-red-700 font-medium border border-transparent rounded-bl-lg hover:text-red-500"
+                      
+                >
+                   
+                  <ion-icon name="trash-outline"></ion-icon>
+                  <span class="ml-3" >Delete</span>
+                </button>
+              </div>
+              <div class="w-0 flex-1 flex">
+                <button data-class-pk="{{ class.pk }}" class="jump-in-button relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+                      
+                >
+                   
+                  <ion-icon name="open-outline"></ion-icon>
+                  <span class="ml-3" >Jump in</span>
+                </button>
               </div>
             </div>
-          </li>
-
-          <!-- More classes... -->
+          </div>
+        </li>
+        {% endfor %}
+        
         </ul>
       </div>
     </div>
