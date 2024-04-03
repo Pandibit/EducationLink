@@ -15,8 +15,15 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script src="{% static "js/classes.js" %}"></script>
+    <script src="https://kit.fontawesome.com/fe48d315e7.js" crossorigin="anonymous"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Google+Sans&display=swap');
+    </style>
+    
   </head>
-  <body class="bg-white">
+  
+
+  <body class="bg-gray-200">
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div>
       <div
@@ -27,6 +34,12 @@
         id="modal-overlay-join"
         class="hidden fixed top-0 left-0 w-full h-full bg-gray-700 opacity-50 z-40"
       ></div>
+
+
+
+
+
+
       <div
         id="modal-create"
         class="fixed z-10 inset-0 overflow-y-auto hidden"
@@ -74,17 +87,17 @@
           >
             <div>
               <div class="mt-3 text-center sm:mt-5">
-                <div class="flex justify-start">
+                <div class="flex justify-center items-center">
                   <h3
-                    class="text-lg leading-6 font-medium text-gray-900"
+                    class="text-lg leading-6 font-sans font-medium text-gray-900"
                     id="modal-title"
                   >
-                    Create class modal
+                    Create a class
                   </h3>
                 </div>
                 <div class="mt-2">
                   <div class="flex justify-start mb-3">
-                    <p class="text-sm text-gray-500">
+                    <p class="text-sm font-sans text-gray-500">
                       Start here to create a new class
                     </p>
                   </div>
@@ -92,12 +105,12 @@
 
                 <div class="flex flex-col space-y-3">
                   <div class="flex flex-col justify-start space-y-5">
-                    <div class="relative mt-1">
+                    <div class="relative mt-1"> 
                       <input
                         type="text"
                         name="name"
                         id="className"
-                        class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
+                        class="block font-sans w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Class name(required) "
                       />
                     </div>
@@ -109,7 +122,7 @@
                         type="text"
                         name="name"
                         id="section"
-                        class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
+                        class="block w-full font-sans border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Section"
                       />
                     </div>
@@ -122,7 +135,7 @@
                         type="text"
                         name="name"
                         id="subject"
-                        class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
+                        class="block w-full font-sans border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Subject"
                       />
                     </div>
@@ -134,7 +147,7 @@
                         type="text"
                         name="name"
                         id="room"
-                        class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
+                        class="block w-full font-sans border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-15 px-4 py-2"
                         placeholder="Room"
                       />
                     </div>
@@ -142,9 +155,17 @@
 
                   
                   <div class="flex flex-col justify-start">
-                    <div class="flex items-center justify-center w-full">
-                      <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none " aria-describedby="file_input_help" id="file_input" type="file">
-
+                    <div class="flex font-sans items-center justify-center w-full">
+                      <input type="file"  id="file_input" class="block w-full font-sans text-sm rounded-md text-gray-500 h-15 border border-gray-300
+                                                file:me-4 file:py-2 file:px-4
+                                                file:rounded-lg file:border-0
+                                                file:rounded-md
+                                                file:text-sm file:font-semibold
+                                                file:bg-blue-500 file:text-white
+                                                hover:file:bg-blue-700
+                                                file:disabled:opacity-50 file:disabled:pointer-events-none
+                                                
+                                              ">          
                     </div> 
                   </div>
 
@@ -152,19 +173,19 @@
               </div>
             </div>
             <div
-              class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense"
+              class="sm:mt-6 mt-2 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense"
             >
               <button
                 type="button"
                 id="enterButton"
-                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 sm:col-start-2 sm:text-sm"
+                class="w-full sm:mt-2 inline-flex font-sans justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-800 focus:outline-none  sm:col-start-2 sm:text-sm"
               >
                 Enter
               </button>
               <button
                 type="button"
                 id="cancelButton"
-                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-150 sm:mt-0 sm:col-start-1 sm:text-sm"
+                class="w-full font-sans sm:mt-2 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-gray-150 sm:mt-0 sm:col-start-1 sm:text-sm"
               >
                 Cancel
               </button>
@@ -173,6 +194,7 @@
         </div>
       </div>
 
+      {% comment %} Join class modal {% endcomment %}
       <div
         id="modal-join"
         class="fixed z-10 inset-0 overflow-y-auto hidden"
@@ -221,52 +243,58 @@
           >
             <div>
               <div class="mt-3 text-center sm:mt-5 flex justify-start flex-col">
-                <div class="flex justify-start">
+                <div class="flex justify-center items-center">
                   <h3
-                    class="text-lg leading-6 font-medium text-gray-900"
+                    class="text-lg font-sans leadifont-sansng-6 font-medium text-gray-900"
                     id="modal-title"
                   >
                     Class code
                   </h3>
                 </div>
                 <div class="flex justify-start mb-3">
-                  <p class="text-md leading-6 font-medium text-black-400">
-                    Ask the creator for the class code, then enter it here.
-                  </p>
+                  <div class="flex flex-col justify-start">
+                    <p class="flex text-sm font-sans leading-6 font-medium text-black-400">
+                    Ask the creator for the class code
+                    </p>
+                    <p class="flex font-sans leading-6 font-light text-sm text-gray-400">
+                    Don't forget that the code is 8 characters long
+                    </p>
+                  </div>
                 </div>
                 <div class="flex flex-col justify-start">
                   <div class="flex justify-start">
                     <label
                       for="name"
-                      class="block text-sm font-medium text-gray-700"
+                      class="block font-sans text-sm font-medium text-gray-700"
                       >Class code</label
                     >
                   </div>
-                  <div class="mt-1">
+                  <div class="mt-2">
                     <input
                       type="text"
                       name="name"
-                      id="name"
-                      class="block w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-10 px-4 py-2"
-                      placeholder="Jane Doe"
+                      id="classCode"
+                      class="block  font-sans w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 text-sm h-10 px-4 py-2"
+                      placeholder="Code here..."
                     />
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense"
+              class="sm:mt-6 mt-2 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense"
             >
               <button
                 type="button"
-                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
+                id="joinButton"
+                class="w-full sm:mt-2 inline-flex font-sans justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-800 focus:outline-none  sm:col-start-2 sm:text-sm"
               >
                 Enter
               </button>
               <button
                 type="button"
                 id="cancelButton-join"
-                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-150 sm:mt-0 sm:col-start-1 sm:text-sm"
+                class="mt-3 w-full font-sans inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-gray-150 sm:mt-0 sm:col-start-1 sm:text-sm"
               >
                 Cancel
               </button>
@@ -275,8 +303,8 @@
         </div>
       </div>
 
-      <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="bg-gray-100 shadow">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div class="flex justify-between h-16">
             <div class="flex">
               <div class="flex-shrink-0 flex items-center">
@@ -286,8 +314,8 @@
                   alt="Workflow"
                 />
                 <img
-                  class="hidden lg:block h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+                  class="hidden lg:block h-14 w-auto"
+                  src="{% static "images/WhatsApp Image 2024-03-28 at 3.03.50 PM.jpeg" %}"
                   alt="Workflow"
                 />
               </div>
@@ -295,31 +323,31 @@
                 <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                 <a
                   href="{% url 'homepage' %}"
-                  class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  class="border-transparent text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Home
                 </a>
                 <a
                   href="{% url 'posts' %}"
-                  class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  class="border-transparent text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Posts
                 </a>
                 <a
                   href="{% url 'chatroom' %}"
-                  class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  class="border-transparent font-sans text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Chatroom
                 </a>
                 <a
                   href="{% url 'classes' %}"
-                  class="{% if request.path == '/classes' %}border-indigo-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  class="{% if request.path == '/classes' %}border-blue-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Classes
                 </a>
                 <a
                   href="{% url 'quiz' %}"
-                  class="{% if request.path == '/quiz' %}border-indigo-500{% else %}border-transparent{% endif %} text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  class="{% if request.path == '/quiz' %}border-indigo-500{% else %}border-transparent{% endif %} text-gray-500 hover:border-gray-300 font-sans hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Quizes
                 </a>
@@ -328,19 +356,23 @@
             <div class="hidden sm:ml-6 sm:flex sm:items-center">
               <div class="ml-3 relative">
                 <div class="flex justify-center items-center">
-                  <button
-                    id="class-menu-btn"
-                    type="button"
-                    class="bg-white p-1 rounded-full hover:text-gray-500 text-2xl font-meddium"
-                  >
-                    <span class="sr-only">View notifications</span>
-                    <!-- Heroicon name: outline/bell -->
-                    <ion-icon name="add-outline" class=""></ion-icon>
-                  </button>
+                 
+                    <button
+                      id="class-menu-btn"
+                      type="button"
+                      class="bg-gray-100 p-1 rounded-full text-gray-400 hover:text-gray-600 text-2xl font-medium"
+                    > 
+                    <div class="flex justify-center items-center">
+                      <ion-icon name="add-outline" class=""></ion-icon>
+                    </div>
+                    </button>
+                  
+                      
+              
                 </div>
                 <div
                   id="class-menu"
-                  class="origin-top-right absolute right-3 mt-0 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  class="origin-top-right absolute right-3 mt-0 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
@@ -349,7 +381,7 @@
                   <!-- Active: "bg-gray-100", Not Active: "" -->
                   <a
                     href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 border-b"
+                    class="block px-4 font-sans py-2 text-sm text-gray-700 border-b"
                     role="menuitem"
                     tabindex="-1"
                     id="join-button"
@@ -358,7 +390,7 @@
                   <a
                     href="#"
                     id="create-button"
-                    class="block px-4 py-2 text-sm text-gray-700"
+                    class="block px-4 py-2 font-sans text-sm text-gray-700"
                     role="menuitem"
                     tabindex="-1"
                     >Create a class</a
@@ -408,7 +440,7 @@
                   <!-- Active: "bg-gray-100", Not Active: "" -->
                   <a
                     href="#"
-                    class="block px-4 py-2 text-sm text-gray-700"
+                    class="block font-sans px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                     tabindex="-1"
                     id="user-menu-item-0"
@@ -417,7 +449,7 @@
 
                   <a
                     href="#"
-                    class="block px-4 py-2 text-sm text-gray-700"
+                    class="block font-sans px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                     tabindex="-1"
                     id="user-menu-item-2"
@@ -427,11 +459,13 @@
               </div>
             </div>
             <div class="-mr-2 flex items-center sm:hidden">
+
+             
               <!-- Mobile menu button -->
               <button
                 id="user-menu-button"
                 type="button"
-                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 "
                 aria-controls="mobile-menu"
                 aria-expanded="false"
                 onclick="toggleMenu()"
@@ -492,28 +526,28 @@
             <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
             <a
               href="{% url 'homepage' %}"
-              class="border-transparent block text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              class="border-transparent font-sans block text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >Home</a
             >
             <a
               href="{% url 'posts' %}"
-              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              class="border-transparent font-sans text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >Posts</a
             >
             <a
               href="{% url 'chatroom' %}"
-              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              class="border-transparent text-gray-500 font-sans hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >Chatroom</a
             >
             <a
               href="{% url 'classes' %}"
-              class="{% if request.path == '/classes' %}border-indigo-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              class="{% if request.path == '/classes' %}border-blue-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >Classes</a
             >
 
             <a
               href="{% url 'quiz' %}"
-              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 font-sans block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >Quizes</a
             >
           </div>
@@ -521,127 +555,260 @@
             <div class="flex items-center px-4">
               <div class="flex-shrink-0">
                 <img
-                  class="h-10 w-10 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  class="h-10 w-10 font-sans rounded-full"
+                  src="{% if user.avatar.image %}{{ user.avatar.image.url }}{% else %}https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80{% endif %}"
                   alt=""
                 />
               </div>
               <div class="ml-3">
-                <div class="text-base font-medium text-gray-800">Tom Cook</div>
-                <div class="text-sm font-medium text-gray-500">
-                  tom@example.com
+                <div class="text-base font-sans font-medium text-gray-800">{{ user.username }}</div>
+                  <div class="text-sm font-sans font-medium text-gray-500">
+                    {{ user.email }}
+                  </div>
                 </div>
-              </div>
               <button
                 type="button"
-                class="ml-auto flex-shrink-0 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                id="user_profile_classes"
+                class="ml-auto flex-shrink-0 bg-gray p-1 rounded-full text-gray-400 "
               >
                 <span class="sr-only">View notifications</span>
                 <!-- Heroicon name: outline/bell -->
-                <svg
-                  class="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  />
-                </svg>
+                <ion-icon class="text-gray-600" name="person-sharp"></ion-icon>
               </button>
             </div>
-            <div class="mt-3 space-y-1">
+            <div id="profile_sign_classes" class="mt-3 space-y-1 hidden" >
+            
+              <button id="join-button-mobile"  class="block font-sans px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                Join a class
+              </button>
+              <button id="create-button-mobile"  class="block font-sans px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                Create a class
+              </button>
+              
               <a
                 href="#"
-                class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                >Your Profile</a
-              >
-              <a
-                href="#"
-                class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                >Settings</a
-              >
-              <a
-                href="#"
-                class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                class="block px-4 font-sans py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                 >Sign out</a
               >
             </div>
           </div>
         </div>
       </nav>
-      <div>
-             
-        <ul
-          role="list"
-          class="p-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-        > 
-        {% for class in classes %}
-        <li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
-          <div class="w-full flex items-center justify-between p-6 space-x-6">
-            <div class="flex-1 truncate">
-              <div class="flex items-center space-x-3">
-                <h3 class="text-gray-900 text-sm font-medium truncate">{{ class.name }}</h3>
-                <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ class.user }}</span>
-              </div>
-              <p class="mt-1 text-gray-500 text-sm truncate">{{ class.section }}</p>
-              
-            </div>
-            {% if class.class_photo %}
-    {% with class.class_photo.url as file_url %}
-        {% if file_url|lower|slice:"-4:" == '.jpg' or file_url|lower|slice:"-5:" == '.jpeg' or file_url|lower|slice:"-4:" == '.png' %}
-            <!-- Display the image if it's a supported image file -->
-            <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="{{ file_url }}" alt="">
-        {% elif file_url|lower|slice:"-4:" == '.svg' %}
-            <!-- Display the SVG file using the object tag -->
-            <object class="w-40 h-32 flex-shrink-0 mx-auto" data="{{ file_url }}" type="image/svg+xml"></object>
-        {% else %}
-            <!-- Display a link to the file if it's not an image or SVG -->
-            <div class="relative"><a href="{{ file_url }}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ class.class_photo }}</a></div>
-        {% endif %}
-    {% endwith %}
-{% endif %}
-
-            
-          </div>
-          <div>
-            <div class="-mt-px flex divide-x divide-gray-200">
-              <div class="w-0 flex-1 flex">
-                <button class=" relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-red-700 font-medium border border-transparent rounded-bl-lg hover:text-red-500"
-                      
-                >
-                   
-                  <ion-icon name="trash-outline"></ion-icon>
-                  <span class="ml-3" >Delete</span>
-                </button>
-              </div>
-              <div class="w-0 flex-1 flex">
-                <button data-class-pk="{{ class.pk }}" class="jump-in-button relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
-                      
-                >
-                   
-                  <ion-icon name="open-outline"></ion-icon>
-                  <span class="ml-3" >Jump in</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </li>
-        {% endfor %}
         
-        </ul>
+
+        {% if user.class_memberships.all %}
+        <div>
+              
+          <ul
+            role="list"
+            class="p-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          > 
+          {% for membership in request.user.class_memberships.all %}
+          {% with class=membership.specific_class %}
+              <li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
+                  <div class="w-full flex items-center justify-between p-6 space-x-6">
+                      <div class="flex-1 truncate">
+                          <div class="flex items-center space-x-3">
+                              <h3 class="text-gray-900 text-sm font-medium truncate">{{ class.name }}</h3>
+                              <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ class.creator }}</span>
+                          </div>
+                          <p class="mt-1 text-gray-500 text-sm truncate">{{ class.section }}</p>
+                          <p class="mt-1 text-gray-500 text-sm truncate">Members: {{ class.memberships.count }}</p>
+                      </div>
+                      {% if class.class_photo %}
+                          {% with class.class_photo.url as file_url %}
+                              {% if file_url|lower|slice:"-4:" == '.jpg' or file_url|lower|slice:"-5:" == '.jpeg' or file_url|lower|slice:"-4:" == '.png' %}
+                                  <!-- Display the image if it's a supported image file -->
+                                  <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="{{ file_url }}" alt="">
+                              {% elif file_url|lower|slice:"-4:" == '.svg' %}
+                                  <!-- Display the SVG file using the object tag -->
+                                  <object class="w-40 h-32 flex-shrink-0 mx-auto" data="{{ file_url }}" type="image/svg+xml"></object>
+                              {% else %}
+                                  <!-- Display a link to the file if it's not an image or SVG -->
+                                  <div class="relative"><a href="{{ file_url }}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ class.class_photo }}</a></div>
+                              {% endif %}
+                          {% endwith %}
+                      {% endif %}
+                  </div>
+                  <div>
+                      <div class="-mt-px flex divide-x divide-gray-200">
+                          <div class="w-0 flex-1 flex">
+                              {% if class.creator == user %}
+                                  <button data-class-id="{{ class.pk }}" class="delete-class-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-red-700 font-medium border border-transparent rounded-bl-lg hover:text-red-500">
+                                    <i class="fa-solid fa-trash"></i>
+                                      <span class="ml-3 ">Delete</span>
+                                  </button>
+                              {% else %}
+                                  <button data-class-id="{{ class.pk }}" class="unenroll-class-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-green-900 font-medium border border-transparent rounded-bl-lg hover:text-green-700">
+                                      <ion-icon name="person-remove-sharp"></ion-icon>
+                                      <span class="ml-3 ">Unenroll</span>
+                                  </button>
+                              {% endif %}
+                          </div>
+                          <div class="w-0 flex-1 flex">
+                              <button data-class-pk="{{ class.pk }}" class="jump-in-button relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-900 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
+                                  <i class="fa-solid fa-door-open"></i>
+                                  <span class="ml-3 ">Jump in</span>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+          {% endwith %}
+      {% endfor %}
+      
+          
+          </ul>
+          {% else %}
+          {% comment %} No membership  {% endcomment %}
+          <div class="flex p-5 mr-2 justify-center items-center">
+            <div class="text-center">
+              <div class="flex justify-center items-center "><img src="{% static "images/undraw_educator_re_ju47.svg" %}"  alt="" class="fill-gray-200 w- h-64 rounded-md "></div>
+              <h3 class="mt-2 text-sm font-sans font-medium text-gray-900">No classes</h3>
+              <p class="mt-1 font-sans text-sm text-gray-500">
+                Get started by creating a new class
+              </p>
+              <div class="mt-6">
+                <button
+                  id="create-button-1"
+                  type="button"
+                  class="inline-flex font-sans items-center px-4 py-2 border border-transparent shadow-sm text-xs font-medium rounded-3xl text-white bg-blue-600 hover:bg-blue-700 "
+                >
+                  <!-- Heroicon name: solid/plus -->
+                  <svg
+                    class="-ml-1 mr-2 h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  New Class
+                </button>
+              </div>
+            </div>
+          </div>
+      
+          {% endif %}
+        
+
+        </div>
+
+     </div>
+
+{% comment %} Delete class modal {% endcomment %}
+      <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="delete-class-modal" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <!--
+            Background overlay, show/hide based on modal state.
+      
+            Entering: "ease-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+      
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      
+          <!--
+            Modal panel, show/hide based on modal state.
+      
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div class="sm:flex sm:items-start">
+              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                <!-- Heroicon name: outline/exclamation -->
+                <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Delete your class</h3>
+                <div class="mt-2">
+                  <p class="text-sm text-gray-500">Are you sure you want the class you've created? This action cannot be undone.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+              <button type="button" id="confirm-delete-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none  sm:ml-3 sm:w-auto sm:text-sm">Delete</button>
+              <button type="button" id="cancel" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none  sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+            </div>
+          </div>
+        </div>
       </div>
+{% comment %} Unenroll class modal {% endcomment %}
+      <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="unenroll-class-modal" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <!--
+            Background overlay, show/hide based on modal state.
+      
+            Entering: "ease-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+      
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      
+          <!--
+            Modal panel, show/hide based on modal state.
+      
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div class="sm:flex sm:items-start">
+              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                <!-- Heroicon name: outline/exclamation -->
+                <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Unenroll from this existing class</h3>
+                <div class="mt-2">
+                  <p class="text-sm text-gray-500">Are you sure you want to enroll from the class are already a member? This action cannot be undone.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+              <button type="button" id="confirm-unenroll-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none  sm:ml-3 sm:w-auto sm:text-sm">Unenroll</button>
+              <button type="button" id="cancelbutton" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none  sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
     </div>
     <script>
       const userMenuButton = document.getElementById("user-menu-button");
       const userMenu = document.getElementById("user-menu");
-
-      // Initially hide the user menu
       userMenu.style.display = "none";
 
       userMenuButton.addEventListener("click", function (event) {
@@ -754,7 +921,7 @@
         });
       });
 
-      //The join modal
+      //The modal for joining a new class
 
       document.addEventListener("DOMContentLoaded", function () {
         // Select the create class link
@@ -805,6 +972,102 @@
         });
       });
 
+      // The modal for joining in the mobile
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select the create class link
+        const joinClassLink = document.getElementById("join-button-mobile");
+
+        // Select the modal and overlay
+        const joinmodal = document.getElementById("modal-join");
+        const overlay = document.querySelector(".bg-gray-500");
+
+        // Function to hide modal and overlay
+        function hidejoinModal() {
+          joinmodal.classList.add("hidden");
+          overlay.classList.add("hidden");
+        }
+
+        // Add event listener to the create class link
+        joinClassLink.addEventListener("click", function (event) {
+          event.preventDefault();
+          // Display the modal and overlay
+          joinmodal.classList.remove("hidden");
+          overlay.classList.remove("hidden");
+        });
+
+        // Add event listener to the overlay to hide modal when clicked outside
+        overlay.addEventListener("click", function (event) {
+          if (event.target === overlay) {
+            hidejoinModal();
+          }
+        });
+
+        // Select the cancel button
+        const cancelButton = document.getElementById("cancelButton-join");
+
+        // Add event listener to the cancel button
+        cancelButton.addEventListener("click", function () {
+          // Hide the modal and overlay
+          hidejoinModal();
+        });
+
+        // Add event listener to the Escape key to hide modal
+        document.addEventListener("keydown", function (event) {
+          if (
+            event.key === "Escape" &&
+            !joinmodal.classList.contains("hidden")
+          ) {
+            hidejoinModal();
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select the create class link
+        const createClassLink = document.getElementById("create-button-mobile");
+
+        // Select the modal and overlay
+        const modal = document.getElementById("modal-create");
+        const overlay = document.querySelector(".bg-gray-500");
+
+        // Function to hide modal and overlay
+        function hideModal() {
+          modal.classList.add("hidden");
+          overlay.classList.add("hidden");
+        }
+
+        // Add event listener to the create class link
+        createClassLink.addEventListener("click", function (event) {
+          event.preventDefault();
+          // Display the modal and overlay
+          modal.classList.remove("hidden");
+          overlay.classList.remove("hidden");
+        });
+
+        // Add event listener to the overlay to hide modal when clicked outside
+        overlay.addEventListener("click", function (event) {
+          if (event.target === overlay) {
+            hideModal();
+          }
+        });
+
+        // Select the cancel button
+        const cancelButton = document.getElementById("cancelButton");
+
+        // Add event listener to the cancel button
+        cancelButton.addEventListener("click", function () {
+          // Hide the modal and overlay
+          hideModal();
+        });
+
+        // Add event listener to the Escape key to hide modal
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+            hideModal();
+          }
+        });
+      });
+
       function toggleMenu() {
         var mobileMenu = document.getElementById("mobile-menu");
         if (mobileMenu.hasAttribute("hidden")) {
@@ -813,6 +1076,10 @@
           mobileMenu.setAttribute("hidden", "");
         }
       }
+
+
+
+    
     </script>
   </body>
 </html>

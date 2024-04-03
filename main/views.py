@@ -2,18 +2,19 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from .forms import CreateUserForm, LoginForm
+import json
 
 # Authentication models and functions
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Post, Class, Avatar
-
-# Create your views here.
+from .models import Post, Class, Avatar, ClassMembership,Room
+import logging
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 def main(request):
@@ -34,9 +35,9 @@ def register(request):
     return render(request, "register.html", context=context)
 
 
+@ensure_csrf_cookie
 def login_view(request):
-    if request.user.is_authenticated:  # Check if the user is already authenticated
-        return redirect("homepage")  # Redirect logged-in users to the homepage
+   
 
     form = LoginForm()
 
@@ -50,6 +51,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+
                 return redirect("homepage")
 
     context = {"loginform": form}
@@ -77,12 +79,23 @@ def posts(request):
 
 
 @login_required(login_url="login")
-@login_required(login_url="login")
 def save_post(request):
     if request.method == "POST":
+        # Retrieve data from the POST request
         subject = request.POST.get("subject")
         short_description = request.POST.get("short_description")
         dropzone_file = request.FILES.get("dropzone_file")
+
+        # Check if any required field is missing
+        if not subject or not short_description or not dropzone_file:
+            return JsonResponse({"error": "All fields are required."}, status=400)
+
+        if dropzone_file is None:
+            return JsonResponse({"error": "Please upload a post photo."}, status=400)
+
+        # Check if the uploaded file is an image
+        if not dropzone_file.content_type.startswith('image/'):
+            return JsonResponse({"error": "Please upload an image file."}, status=400)
 
         # Create and save the post
         post = Post(
@@ -97,37 +110,107 @@ def save_post(request):
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
 
+@login_required(login_url="login")
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == "POST":
+        post.delete()
+        return JsonResponse({"message": "Post deleted successfully"}, status=200)
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+
+
+@login_required(login_url="login")
+def update_post(request, post_id):
+
+    if request.method == "POST":
+        # Retrieve the updated values from the request
+        subject = request.POST.get("subject")
+        short_description = request.POST.get("short_description")
+        dropzone_file = request.FILES.get(
+            "dropzone_file"
+        )  # Use request.FILES to get file data
+
+        # Update the post in the database
+        try:
+            post = Post.objects.get(pk=post_id)
+            if subject:
+                post.subject = subject
+            if short_description:
+                post.short_description = short_description
+
+            if dropzone_file:
+                post.dropzone_file = (
+                    dropzone_file  # Update only if a new file is uploaded
+                )
+            post.save()
+            return JsonResponse({"message": "Post updated successfully"})
+        except Post.DoesNotExist:
+            return JsonResponse({"error": "Post not found"}, status=404)
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=405)
 
 @login_required(login_url="login")
 def classes(request):
-    classes = Class.objects.filter(user=request.user)
+    classes = Class.objects.filter(creator=request.user)
     context = {"classes": classes}
     return render(request, "classes.html", context=context)
 
 
 @login_required(login_url="login")
-@csrf_exempt  # This decorator is used to allow POST requests without CSRF token for simplicity. Adjust as needed in your actual project.
+def delete_class(request, class_id):
+    
+    spec_class = get_object_or_404(Class, pk=class_id)
+
+    if request.user == spec_class.creator:
+        spec_class.delete()
+
+        
+        return JsonResponse({"message": "Class deleted successfully"}, status=200)
+    else:
+        # Return a JSON response indicating unauthorized access
+        return JsonResponse({"error": "You are not authorized to delete this class"}, status=403)
+
+
+@login_required(login_url="login")
 def save_class(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         # Retrieve data from the POST request
-        name = request.POST.get('name')
-        section = request.POST.get('section')
-        subject = request.POST.get('subject')
-        room = request.POST.get('room')
-        class_photo = request.FILES.get('class_photo')
+        name = request.POST.get("name")
+        section = request.POST.get("section")
+        subject = request.POST.get("subject")
+        room = request.POST.get("room")
+        class_photo = request.FILES.get("class_photo")
+
+        # Check if any field is empty
+        if not name:
+            return JsonResponse({"error": "Please enter a class name."}, status=400)
+        if not section:
+            return JsonResponse({"error": "Please enter a section."}, status=400)
+        if not subject:
+            return JsonResponse({"error": "Please enter a subject."}, status=400)
+        if not room:
+            return JsonResponse({"error": "Please enter a room."}, status=400)
+
+        # Check if a file was uploaded
+        if class_photo is None:
+            return JsonResponse({"error": "Please upload a class photo."}, status=400)
+
+        # Check if the uploaded file is an image
+        if not class_photo.content_type.startswith('image/'):
+            return JsonResponse({"error": "Please upload an image file."}, status=400)
 
         # Create a new Class object
         new_class = Class.objects.create(
-            user=request.user,  # Assuming user is authenticated and available in the request
+            creator=request.user,  # Assuming user is authenticated and available in the request
             name=name,
             section=section,
             subject=subject,
             room=room,
-            class_photo=class_photo
+            class_photo=class_photo,
         )
 
         # Optionally, you can return a success message
-        return JsonResponse({'message': 'Class saved successfully!'})
+        return JsonResponse({"message": "Class saved successfully!"})
     else:
         # Handle GET requests if needed
         pass
@@ -136,27 +219,15 @@ def save_class(request):
 @login_required(login_url="login")
 def spec_class(request, pk):
     spec_class = get_object_or_404(Class, pk=pk)
-    # Pass the class object to the template
-    return render(request, 'class.html', {'class': spec_class})
-
-
-
-@login_required(login_url="login")
-def chatroom(request):
-    return render(request, "chatroom.html")
-
-
-@login_required(login_url="login")
-def quiz(request):
-    return render(request, "quiz.html")
-
+    class_memberships = ClassMembership.objects.filter(specific_class=spec_class)
+    return render(request, "class.html", {"class": spec_class,'class_memberships': class_memberships})
 
 
 @login_required
 def save_avatar(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         # Get the image data from the request.FILES dictionary
-        image_data = request.FILES.get('image')
+        image_data = request.FILES.get("image")
 
         # Check if the image data exists
         if image_data:
@@ -170,10 +241,113 @@ def save_avatar(request):
                 # If the user doesn't have an avatar, create a new one
                 avatar = Avatar.objects.create(user=request.user, image=image_data)
 
-            
-
             # Return a success response
-            return JsonResponse({{'avatar_url': avatar.image.url}})
+            return JsonResponse({{"avatar_url": avatar.image.url}})
 
     # If the request method is not POST or image data is missing, return an error response
-    return JsonResponse({'error': 'Invalid request.'}, status=400)
+    return JsonResponse({"error": "Invalid request."}, status=400)
+
+
+@require_GET
+@login_required
+def check_class_code(request):
+    class_code = request.GET.get('code')
+    class_exists = Class.objects.filter(code=class_code).exists()
+    return JsonResponse({'exists': class_exists})
+
+
+@login_required
+def join_class(request):
+    if request.method == 'GET':
+        class_code = request.GET.get('code')
+        user = request.user
+
+        try:
+            specific_class = Class.objects.get(code=class_code)
+        except Class.DoesNotExist:
+            return JsonResponse({'error': 'Class does not exist'}, status=404)
+
+        # Check if the user is the creator of the class
+        if specific_class.creator == user:
+            return JsonResponse({'status': 'check_code', 'member_status': 'creator'}, status=200)
+
+        # Check if the user is already a member of the class
+        if ClassMembership.objects.filter(member=user, specific_class=specific_class).exists():
+            return JsonResponse({'status': 'already_member', 'member_status': 'existing'}, status=200)
+
+        # Add the user as the newest member of the class
+        ClassMembership.objects.create(member=user, specific_class=specific_class)
+        
+        return JsonResponse({'status': 'success', 'member_status': 'added'}, status=200)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+@login_required
+@require_POST
+def unenroll_class(request, class_id):
+    specific_class = get_object_or_404(Class, pk=class_id)
+    user = request.user
+
+    # Check if the user is a member of the class
+    try:
+        membership = ClassMembership.objects.get(member=user, specific_class=specific_class)
+    except ClassMembership.DoesNotExist:
+        return JsonResponse({'error': 'You are not a member of this class'}, status=400)
+
+    # Check if the user is the creator of the class
+    if specific_class.creator == user:
+        return JsonResponse({'error': 'You cannot unenroll from a class you created'}, status=400)
+
+    # Remove the user from the class membership
+    membership.delete()
+
+    return JsonResponse({'message': 'Successfully unenrolled from class'}, status=200)
+
+
+@login_required(login_url="login")
+def chatroom(request):
+    rooms = Room.objects.filter(creator=request.user)
+    return render(request, "chatroom.html", {'rooms': rooms})
+
+@login_required(login_url="login")
+def create_room(request):
+    if request.method == "POST":
+        # Retrieve data from the POST request
+        name = request.POST.get("name")
+        subject = request.POST.get("subject")
+        room_photo = request.FILES.get("room_photo")
+
+        # Validate file type (ensure it's an image)
+        if not room_photo.content_type.startswith('image'):
+            return JsonResponse({"error": "Please upload an image file."}, status=400)
+
+        # Create a new Room object
+        new_room = Room.objects.create(
+            creator=request.user,  # Assuming user is authenticated and available in the request
+            name=name,
+            subject=subject,
+            room_photo=room_photo,
+        )
+
+        # Return success message
+        return JsonResponse({"message": "Room created successfully!"})
+    else:
+        # Handle GET requests if needed
+        pass
+
+
+@login_required(login_url="login")
+@require_http_methods(["DELETE"])
+def delete_room(request, room_id):
+    if request.method == 'DELETE':
+        room = get_object_or_404(Room, pk=room_id)
+        room.delete()
+        return JsonResponse({'message': 'Room deleted successfully'}, status=204)
+    else:
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+@login_required(login_url="login")
+def quiz(request):
+    return render(request, "quiz.html")
+
+
