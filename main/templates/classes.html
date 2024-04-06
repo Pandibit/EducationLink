@@ -309,15 +309,15 @@
             <div class="flex">
               <div class="flex-shrink-0 flex items-center">
                 <img
-                  class="block lg:hidden h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
-                <img
-                  class="hidden lg:block h-14 w-auto"
-                  src="{% static "images/WhatsApp Image 2024-03-28 at 3.03.50 PM.jpeg" %}"
-                  alt="Workflow"
-                />
+                class="block lg:hidden h-16 w-auto"
+                src="{% static "images/EduLink (1).png" %}"
+                alt="Workflow"
+              />
+              <img
+                class="hidden lg:block h-16 w-auto"
+                src="{% static "images/EduLink (1).png" %}"
+                alt="Workflow"
+              />
               </div>
               <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
@@ -341,15 +341,15 @@
                 </a>
                 <a
                   href="{% url 'classes' %}"
-                  class="{% if request.path == '/classes' %}border-blue-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  class="{% if request.path == '/classes' %}border-cyan-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Classes
                 </a>
                 <a
-                  href="{% url 'quiz' %}"
-                  class="{% if request.path == '/quiz' %}border-indigo-500{% else %}border-transparent{% endif %} text-gray-500 hover:border-gray-300 font-sans hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  href="{% url 'plan' %}"
+                  class="{% if request.path == '/plan' %}border-indigo-500{% else %}border-transparent{% endif %} text-gray-500 hover:border-gray-300 font-sans hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
-                  Quizes
+                  Plan
                 </a>
               </div>
             </div>
@@ -360,10 +360,10 @@
                     <button
                       id="class-menu-btn"
                       type="button"
-                      class="bg-gray-100 p-1 rounded-full text-gray-400 hover:text-gray-600 text-2xl font-medium"
+                      class="bg-gray-100 p-1 rounded-full text-gray-400 hover:text-gray-600 text-md  font-medium"
                     > 
                     <div class="flex justify-center items-center">
-                      <ion-icon name="add-outline" class=""></ion-icon>
+                      <i class="fa-solid fa-plus"></i>
                     </div>
                     </button>
                   
@@ -546,9 +546,9 @@
             >
 
             <a
-              href="{% url 'quiz' %}"
+              href="{% url 'plan' %}"
               class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 font-sans block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-              >Quizes</a
+              >Plan</a
             >
           </div>
           <div class="pt-4 pb-3 border-t border-gray-200">
@@ -573,7 +573,7 @@
               >
                 <span class="sr-only">View notifications</span>
                 <!-- Heroicon name: outline/bell -->
-                <ion-icon class="text-gray-600" name="person-sharp"></ion-icon>
+                <i class="fa-solid fa-bars"></i>
               </button>
             </div>
             <div id="profile_sign_classes" class="mt-3 space-y-1 hidden" >
@@ -606,30 +606,17 @@
           {% for membership in request.user.class_memberships.all %}
           {% with class=membership.specific_class %}
               <li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
-                  <div class="w-full flex items-center justify-between p-6 space-x-6">
-                      <div class="flex-1 truncate">
-                          <div class="flex items-center space-x-3">
-                              <h3 class="text-gray-900 text-sm font-medium truncate">{{ class.name }}</h3>
-                              <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ class.creator }}</span>
-                          </div>
-                          <p class="mt-1 text-gray-500 text-sm truncate">{{ class.section }}</p>
-                          <p class="mt-1 text-gray-500 text-sm truncate">Members: {{ class.memberships.count }}</p>
-                      </div>
-                      {% if class.class_photo %}
-                          {% with class.class_photo.url as file_url %}
-                              {% if file_url|lower|slice:"-4:" == '.jpg' or file_url|lower|slice:"-5:" == '.jpeg' or file_url|lower|slice:"-4:" == '.png' %}
-                                  <!-- Display the image if it's a supported image file -->
-                                  <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="{{ file_url }}" alt="">
-                              {% elif file_url|lower|slice:"-4:" == '.svg' %}
-                                  <!-- Display the SVG file using the object tag -->
-                                  <object class="w-40 h-32 flex-shrink-0 mx-auto" data="{{ file_url }}" type="image/svg+xml"></object>
-                              {% else %}
-                                  <!-- Display a link to the file if it's not an image or SVG -->
-                                  <div class="relative"><a href="{{ file_url }}" target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ class.class_photo }}</a></div>
-                              {% endif %}
-                          {% endwith %}
-                      {% endif %}
+                <div class="w-full flex items-center justify-between p-6 space-x-6">
+                  <div class="flex-1 truncate">
+                    <div class="flex items-center space-x-3">
+                      <h3 class="text-gray-900 text-sm font-medium truncate">{{class.name}}</h3>
+                      <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{class.subject}}</span>
+                    </div>
+                    <p class="mt-1 text-gray-500 text-sm truncate">{{class.section}}</p>
+                    <p class="mt-1 text-gray-500 text-sm truncate">Members: {{class.memberships.count}}</p>
                   </div>
+                  <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="{{class.class_photo.url}}"  alt="">
+                </div> 
                   <div>
                       <div class="-mt-px flex divide-x divide-gray-200">
                           <div class="w-0 flex-1 flex">
@@ -663,7 +650,7 @@
           {% comment %} No membership  {% endcomment %}
           <div class="flex p-5 mr-2 justify-center items-center">
             <div class="text-center">
-              <div class="flex justify-center items-center "><img src="{% static "images/undraw_educator_re_ju47.svg" %}"  alt="" class="fill-gray-200 w- h-64 rounded-md "></div>
+              <div class="flex justify-center items-center "><img src="{% static "images/undraw_educator_re_ju47 (1).svg" %}"  alt="" class="fill-gray-200 w- h-64 rounded-md "></div>
               <h3 class="mt-2 text-sm font-sans font-medium text-gray-900">No classes</h3>
               <p class="mt-1 font-sans text-sm text-gray-500">
                 Get started by creating a new class
@@ -672,7 +659,7 @@
                 <button
                   id="create-button-1"
                   type="button"
-                  class="inline-flex font-sans items-center px-4 py-2 border border-transparent shadow-sm text-xs font-medium rounded-3xl text-white bg-blue-600 hover:bg-blue-700 "
+                  class="inline-flex font-sans items-center px-4 py-2 border border-transparent shadow-sm text-xs font-medium rounded-3xl text-white bg-cyan-600 hover:bg-cyan-700 "
                 >
                   <!-- Heroicon name: solid/plus -->
                   <svg

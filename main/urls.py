@@ -17,12 +17,13 @@ urlpatterns = [
     path("delete_class/<int:class_id>/", views.delete_class, name="delete_class"),
     path("save_avatar", views.save_avatar, name="save_avatar"),
     path("chatroom", views.chatroom, name="chatroom"),
-    path("quiz", views.quiz, name="quiz"),
     path('api/check_class_code/', views.check_class_code, name='check_class_code'),
     path('api/join_class/', views.join_class, name='join_class'),
     path('unenroll_class/<int:class_id>/', views.unenroll_class, name='unenroll_class'),
     path('create_room/', views.create_room, name='create_room'),
     path('delete-room/<int:room_id>/', views.delete_room, name='delete_room'),
+    path('room/<int:pk>/', views.spec_room, name='spec_room'),
+    path('plan', views.plan, name='plan'),
     
     
 

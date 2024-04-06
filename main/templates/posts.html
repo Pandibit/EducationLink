@@ -146,15 +146,15 @@
             <div class="flex">
               <div class="flex-shrink-0 flex items-center">
                 <img
-                  class="block lg:hidden h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
-                <img
-                  class="hidden lg:block h-14 w-auto"
-                  src="{% static "images/WhatsApp Image 2024-03-28 at 3.03.50 PM.jpeg" %}"
-                  alt="Workflow"
-                />
+                class="block lg:hidden h-16 w-auto"
+                src="{% static "images/EduLink (1).png" %}"
+                alt="Workflow"
+              />
+              <img
+                class="hidden lg:block h-16 w-auto"
+                src="{% static "images/EduLink (1).png" %}"
+                alt="Workflow"
+              />
               </div>
               <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
@@ -166,7 +166,7 @@
                 </a>
                 <a
                   href="{% url 'posts' %}"
-                  class="{% if request.path == '/posts' %}border-blue-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  class="{% if request.path == '/posts' %}border-cyan-500 text-gray-900{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Posts
                 </a>
@@ -183,10 +183,10 @@
                   Classes
                 </a>
                 <a
-                  href="{% url 'quiz' %}"
-                  class="{% if request.path == '/quiz' %}border-indigo-500{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  href="{% url 'plan' %}"
+                  class="{% if request.path == '/plan' %}border-indigo-500{% else %}border-transparent{% endif %} text-gray-500 font-sans hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
-                  Quizes
+                  Plan
                 </a>
                 
 
@@ -200,7 +200,7 @@
                 class="bg-gray-100 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none "
               ><div class="flex justify-center items-center">
 
-               <ion-icon class="text-gray-700 text-xl transform hover:scale-105 hover:text-black " name="alarm-outline"></ion-icon>
+                <i class="fa-solid fa-plus"></i>
               </div>
               </button>
               
@@ -343,9 +343,9 @@
             >
 
             <a
-              href="{% url 'quiz' %}"
+              href="{% url 'plan' %}"
               class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block font-sans pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-              >Quizes</a
+              >Plan</a
             >
           </div>
           <div class="pt-4 pb-3 border-t border-gray-200">
@@ -370,7 +370,7 @@
               >
                 <span class="sr-only">View notifications</span>
               
-                <ion-icon class="text-gray-600" name="person-sharp"></ion-icon>
+                <i class="fa-solid fa-bars"></i>
               </button>
             </div>
             <div id="profile_sign_posts" class="mt-3 space-y-1 hidden">
@@ -414,7 +414,7 @@
               > 
               {% for post in posts %}
                 <li
-                  class="col-span-1 border-2 flex flex-col text-center bg-gray-100 rounded-lg drop-shadow-lg divide-y divide-gray-200"
+                  class="col-span-1 border-2 flex flex-col text-center bg-gray-200 rounded-lg drop-shadow-lg divide-y divide-gray-200"
                 >
                 <div class="flex flex-col bg-gray-200  shadow-sm rounded-xl ">
                   <div class="p-2 md:p-5">
@@ -635,11 +635,11 @@
         <!-- Render the "No posts" div if there are no posts in the database -->
         <div class="flex p-5 mr-2 justify-center items-center">
           <div class="text-center">
-            <div class="flex justify-center items-center "><img src="{% static "images/undraw_new_entries_re_cffr.svg" %}"  alt="" class="fill-gray-200 w- h-64 rounded-md "></div>
+            <div class="flex justify-center items-center "><img src="{% static "images/undraw_new_entries_re_cffr (1).svg" %}"  alt="" class="fill-gray-200 w- h-64 rounded-md "></div>
             <h3 class="mt-2 text-sm font-sans font-medium text-gray-900">No posts</h3>
             <p class="mt-1 text-sm font-sans text-gray-500">Get started by creating a new post</p>
-            <div class="mt-6">
-              <button id="newpost-btn" type="button" class="font-sans inline-flex items-center px-4 py-1 border border-transparent shadow-sm text-s font-medium rounded-3xl text-white bg-blue-600 hover:bg-blue-700 focus:outline-none ">
+            <div class="mt-6 ">
+              <button id="newpost-btn" type="button" class="font-sans p-2 inline-flex items-center px-4 py-1 border border-transparent shadow-sm text-sm font-medium rounded-3xl text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none ">
                 <!-- Heroicon name: solid/plus -->
                 <svg class="-ml-1 mr-2 h-5 w-5 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />

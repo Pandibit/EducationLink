@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //When clicking the jump in button redirected to the specific class
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () { 
   var jumpInButtons = document.querySelectorAll(".jump-in-button");
 
   jumpInButtons.forEach(function (button) {

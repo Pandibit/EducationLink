@@ -12,7 +12,7 @@ import json
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Post, Class, Avatar, ClassMembership,Room
+from .models import Post, Class, Avatar, ClassMembership,Room, RoomMembership
 import logging
 from django.views.decorators.csrf import ensure_csrf_cookie
 
@@ -29,7 +29,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Account created!")
-            return redirect("login")
+            return redirect("login_view")
 
     context = {"registerform": form}
     return render(request, "register.html", context=context)
@@ -59,26 +59,28 @@ def login_view(request):
     return render(request, "login.html", context=context)
 
 
-@login_required(login_url="login")
+
+
+@login_required(login_url="login_view")
 def homepage(request):
     current_user = request.user
     return render(request, "homepage.html", {"current_user": current_user})
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def user_logout(request):
     auth.logout(request)
     return redirect("")
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def posts(request):
     posts = Post.objects.filter(user=request.user)
     context = {"posts": posts}
     return render(request, "posts.html", context=context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def save_post(request):
     if request.method == "POST":
         # Retrieve data from the POST request
@@ -110,7 +112,7 @@ def save_post(request):
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     if request.method == "POST":
@@ -119,7 +121,7 @@ def delete_post(request, post_id):
     return JsonResponse({"error": "Invalid request method"}, status=400)
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def update_post(request, post_id):
 
     if request.method == "POST":
@@ -149,14 +151,14 @@ def update_post(request, post_id):
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def classes(request):
     classes = Class.objects.filter(creator=request.user)
     context = {"classes": classes}
     return render(request, "classes.html", context=context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def delete_class(request, class_id):
     
     spec_class = get_object_or_404(Class, pk=class_id)
@@ -171,7 +173,7 @@ def delete_class(request, class_id):
         return JsonResponse({"error": "You are not authorized to delete this class"}, status=403)
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def save_class(request):
     if request.method == "POST":
         # Retrieve data from the POST request
@@ -216,7 +218,7 @@ def save_class(request):
         pass
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def spec_class(request, pk):
     spec_class = get_object_or_404(Class, pk=pk)
     class_memberships = ClassMembership.objects.filter(specific_class=spec_class)
@@ -304,7 +306,7 @@ def unenroll_class(request, class_id):
     return JsonResponse({'message': 'Successfully unenrolled from class'}, status=200)
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def chatroom(request):
     rooms = Room.objects.filter(creator=request.user)
     return render(request, "chatroom.html", {'rooms': rooms})
@@ -346,8 +348,14 @@ def delete_room(request, room_id):
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
 
-@login_required(login_url="login")
-def quiz(request):
-    return render(request, "quiz.html")
+
+@login_required(login_url="login_view")
+def spec_room(request, pk):
+    spec_room = get_object_or_404(Room, pk=pk)
+    room_memberships = RoomMembership.objects.filter(specific_room=spec_room)
+    return render(request, "room.html", {"room": spec_room,'room_memberships': room_memberships})
 
 
+@login_required(login_url="login_view")
+def plan(request):
+    return render(request, "plan.html")

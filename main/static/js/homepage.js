@@ -1,4 +1,3 @@
-
 function showNotification(message) {
   // Create notification panel
   const notificationPanel = document.createElement("div");
@@ -43,3 +42,20 @@ function showNotification(message) {
   document.body.appendChild(notificationPanel);
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Get references to the mobile menu and the open menu button
+  const mobileMenu = document.getElementById("mobile-menu");
+  const openMenuButton = document.getElementById("open-mobile-menu");
+  const closeMenuButton = document.getElementById("close-mobile-menu");
+
+  // Add click event listener to the open menu button
+  openMenuButton.addEventListener("click", function () {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("transition-transform", "transform", "ease-out", "duration-300", "opacity-100", "scale-100");
+  });
+
+  closeMenuButton.addEventListener("click", function () {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("transition-transform", "transform", "ease-out", "duration-300", "opacity-100", "scale-100");
+  });
+});

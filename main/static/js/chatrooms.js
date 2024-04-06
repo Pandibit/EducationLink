@@ -265,3 +265,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   });
+
+
+// Jump in to the room 
+  document.addEventListener("DOMContentLoaded", function () {
+    var chatRoomButtons = document.querySelectorAll(".chat-room-btn");
+  
+    chatRoomButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var roomPk = button.getAttribute("data-room-id");
+        console.log(roomPk);
+        var roomUrl = "/room/" + roomPk ;
+        window.location.href = roomUrl;
+      });
+    });
+  });
+
+ 
+
+function getCSRFToken() {
+  // Retrieve CSRF token from the cookie
+  const cookieValue = document.cookie.match(/csrftoken=([^ ;]+)/)[1];
+  return cookieValue;
+}
+
+
+// Displaying the second menu when u are in the mobile  
+document.addEventListener("DOMContentLoaded", function () {
+  // Get references to the mobile menu and the open menu button
+  const mobileMenu = document.getElementById("second-mobile-menu");
+  const openMenuButton = document.getElementById("open-second-mobile-menu");
+ 
+
+  
+  openMenuButton.addEventListener("click", function () {
+
+    openMenuButton.addEventListener("click", function () {
+      mobileMenu.classList.toggle("hidden");
+  });
+    
+  });
+
+ 
+});

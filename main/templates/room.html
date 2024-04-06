@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://kit.fontawesome.com/fe48d315e7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p><strong>Room name:</strong> {{ room.name }}</p>
+    <p><strong>Subject:</strong> {{ room.subject }}</p>
+    <p><strong>Created By:</strong> {{ room.creator.username }}</p>
+    <p><strong>Code:</strong> {{ room.code }}</p>
+    <p><strong>Created At:</strong> {{ room.created_at }}</p>
+    <p><a class="text-blue-800" href="{% url 'chatroom'%}"> Go back to the classes
+    </a></p>
+    
+</body>
+</html>
