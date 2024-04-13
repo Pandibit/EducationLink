@@ -308,3 +308,211 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const userMenuBtn = document.getElementById("chat-menu-btn");
+  const userMenu = document.getElementById("chat-menu-room");
+
+  
+  userMenuBtn.addEventListener("click", function (event) {
+      
+      toggleMenu();
+      event.stopPropagation();
+  });
+
+  
+  document.body.addEventListener("click", function (event) {
+      const target = event.target;
+
+      
+      if (!target.closest("#chat-menu-btn") && !target.closest("#chat-menu-room")) {
+         
+          hideMenu();
+      }
+  });
+
+ 
+  const allButtons = document.querySelectorAll("button");
+  allButtons.forEach(button => {
+      if (button !== userMenuBtn) {
+          button.addEventListener("click", function () {
+              
+              hideMenu();
+          });
+      }
+  });
+
+ 
+  function toggleMenu() {
+      if (userMenu.classList.contains("hidden")) {
+          
+          userMenu.classList.remove("hidden");
+          userMenu.classList.add("block");
+      } else {
+          
+          hideMenu();
+      }
+  }
+
+  
+  function hideMenu() {
+      userMenu.classList.add("hidden");
+      userMenu.classList.remove("block");
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const userMenuBtn = document.getElementById("user-menu-button");
+  const userMenu = document.getElementById("user-menu");
+
+  
+  userMenuBtn.addEventListener("click", function (event) {
+      
+      toggleMenu();
+      event.stopPropagation();
+  });
+
+  
+  document.body.addEventListener("click", function (event) {
+      const target = event.target;
+
+      
+      if (!target.closest("#user-menu-button") && !target.closest("#user-menu")) {
+         
+          hideMenu();
+      }
+  });
+
+ 
+  const allButtons = document.querySelectorAll("button");
+  allButtons.forEach(button => {
+      if (button !== userMenuBtn) {
+          button.addEventListener("click", function () {
+              
+              hideMenu();
+          });
+      }
+  });
+
+ 
+  function toggleMenu() {
+      if (userMenu.classList.contains("hidden")) {
+          
+          userMenu.classList.remove("hidden");
+          userMenu.classList.add("block");
+      } else {
+          
+          hideMenu();
+      }
+  }
+
+  
+  function hideMenu() {
+      userMenu.classList.add("hidden");
+      userMenu.classList.remove("block");
+  }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const mobileMenuButtonRoom = document.getElementById("mobile-menu-button-room");
+  const mobileMenuRoom = document.getElementById("mobile-menu-room");
+
+  
+
+  // Add click event listener to the mobile menu room button
+  mobileMenuButtonRoom.addEventListener("click", function (event) {
+      // Toggle the visibility of the mobile menu room
+      toggleMenu(mobileMenuRoom);
+      event.stopPropagation(); // Prevent the click event from propagating further
+  });
+
+  // Add click event listener to the document body
+  document.body.addEventListener("click", function (event) {
+      // Check if the click event target is not the mobile menu room button or the mobile menu room itself
+      if (!event.target.closest("#mobile-menu-button-room") && !mobileMenuRoom.contains(event.target)) {
+          // Hide the mobile menu room if it's currently shown
+          hideMenu(mobileMenuRoom);
+      }
+  });
+
+  // Function to toggle menu visibility
+  function toggleMenu(menu) {
+    // Toggle the 'hidden' class to show or hide the menu
+    menu.classList.toggle("hidden");
+  }
+
+  // Function to hide menu
+  function hideMenu(menu) {
+    // Hide the menu by adding the 'hidden' class
+    menu.classList.add("hidden");
+  }
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const createButton = document.getElementById("create-button");
+  const createRoomModal = document.getElementById("createRoomModal");
+
+  // Add click event listener to the create button
+  createButton.addEventListener("click", function () {
+    // Show the modal by removing the 'hidden' class
+    createRoomModal.classList.remove("hidden");
+
+    // Optionally, you can set focus to the first input field in the modal
+   
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+
+
+  
+  // Get references to the button and modal
+  const joinButton = document.getElementById("join-button-room");
+  const modal = document.getElementById("joinRoomModal");
+
+  // Function to show the modal
+  function showModal() {
+    modal.classList.remove("hidden");
+   
+  }
+
+  // Function to hide the modal
+  function hideModal() {
+    modal.classList.add("hidden");
+    
+  }
+
+  // Event listener for the join button
+  joinButton.addEventListener("click", function() {
+    showModal();
+  });
+
+  // Event listener for the cancel button inside the modal
+  const cancelButton = document.getElementById("cancelButtonJoinRoom");
+  cancelButton.addEventListener("click", function() {
+    hideModal();
+  });
+
+  // Close modal if user clicks outside the modal content
+  modal.addEventListener("click", function(event) {
+    if (event.target === modal) {
+      hideModal();
+    }
+  });
+
+  // Optionally, you can also close the modal by pressing the Esc key
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+      hideModal();
+    }
+  });
+});

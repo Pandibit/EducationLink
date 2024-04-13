@@ -17,746 +17,308 @@
     <script src="{% static "js/class.js" %}"></script>
   </head>
   <body class="h-full overflow-hidden">
-    <div>
+    <div class="h-full flex">
       <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-      <div
-        class="fixed inset-0 flex z-40 md:hidden hidden"
-        role="dialog"
-        aria-modal="true"
-      >
+      <div class="fixed inset-0 flex z-40 lg:hidden hidden" role="dialog" aria-modal="true">
         <!--
-        Off-canvas menu overlay, show/hide based on off-canvas menu state.
-  
-        Entering: "transition-opacity ease-linear duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "transition-opacity ease-linear duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
-        <div
-          class="fixed inset-0 bg-gray-600 bg-opacity-75"
-          aria-hidden="true"
-        ></div>
-
-        <!--
-        Off-canvas menu, show/hide based on off-canvas menu state.
-  
-        Entering: "transition ease-in-out duration-300 transform"
-          From: "-translate-x-full"
-          To: "translate-x-0"
-        Leaving: "transition ease-in-out duration-300 transform"
-          From: "translate-x-0"
-          To: "-translate-x-full"
-      -->
-        <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
-          <!--
-          Close button, show/hide based on off-canvas menu state.
-  
-          Entering: "ease-in-out duration-300"
+          Off-canvas menu overlay, show/hide based on off-canvas menu state.
+    
+          Entering: "transition-opacity ease-linear duration-300"
             From: "opacity-0"
             To: "opacity-100"
-          Leaving: "ease-in-out duration-300"
+          Leaving: "transition-opacity ease-linear duration-300"
             From: "opacity-100"
             To: "opacity-0"
         -->
+        <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+    
+        <!--
+          Off-canvas menu, show/hide based on off-canvas menu state.
+    
+          Entering: "transition ease-in-out duration-300 transform"
+            From: "-translate-x-full"
+            To: "translate-x-0"
+          Leaving: "transition ease-in-out duration-300 transform"
+            From: "translate-x-0"
+            To: "-translate-x-full"
+        -->
+        <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white focus:outline-none">
+          <!--
+            Close button, show/hide based on off-canvas menu state.
+    
+            Entering: "ease-in-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in-out duration-300"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
           <div class="absolute top-0 right-0 -mr-12 pt-2">
-            <button
-              type="button"
-              class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            >
+            <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span class="sr-only">Close sidebar</span>
               <!-- Heroicon name: outline/x -->
-              <svg
-                class="h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-
-          <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto ">
+    
+          <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div class="flex-shrink-0 flex items-center px-4">
-              <img
-                class="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                alt="Workflow"
-              />
+              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-900-text.svg" alt="Workflow">
             </div>
-            <nav class="mt-5 px-2 space-y-1">
-              <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-              <a
-                href="#"
-                class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-              >
-                <!--
-                Heroicon name: outline/home
-  
-                Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
-              -->
-                <svg
-                  class="text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  />
-                </svg>
-                Dashboard
-              </a>
-
-              <a
-                href="#"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/users -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-                Team
-              </a>
-
-              <a
-                href="#"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/folder -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                  />
-                </svg>
-                Projects
-              </a>
-
-              <a
-                href="#"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/calendar -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Calendar
-              </a>
-
-              <a
-                href="#"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/inbox -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                  />
-                </svg>
-                Documents
-              </a>
-
-              <a
-                href="#"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/chart-bar -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-                Reports
-              </a>
+            <nav aria-label="Sidebar" class="mt-5">
+              <div class="px-2 space-y-1">
+                <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+                <a href="#" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <!--
+                    Heroicon name: outline/home
+    
+                    Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
+                  -->
+                  <svg class="text-gray-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  Dashboard
+                </a>
+    
+                <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <!-- Heroicon name: outline/calendar -->
+                  <svg class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Calendar
+                </a>
+    
+                <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <!-- Heroicon name: outline/user-group -->
+                  <svg class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  Teams
+                </a>
+    
+                <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <!-- Heroicon name: outline/search-circle -->
+                  <svg class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Directory
+                </a>
+    
+                <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <!-- Heroicon name: outline/speakerphone -->
+                  <svg class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                  </svg>
+                  Announcements
+                </a>
+    
+                <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <!-- Heroicon name: outline/map -->
+                  <svg class="text-gray-400 group-hover:text-gray-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                  </svg>
+                  Office Map
+                </a>
+              </div>
             </nav>
           </div>
           <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
             <a href="#" class="flex-shrink-0 group block">
               <div class="flex items-center">
                 <div>
-                  <img
-                    class="inline-block h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
+                  <img class="inline-block h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="">
                 </div>
                 <div class="ml-3">
-                  <p
-                    class="text-base font-medium text-gray-700 group-hover:text-gray-900"
-                  >
-                    Tom Cook
-                  </p>
-                  <p
-                    class="text-sm font-medium text-gray-500 group-hover:text-gray-700"
-                  >
-                    View profile
-                  </p>
+                  <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">Whitney Francis</p>
+                  <p class="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                 </div>
               </div>
             </a>
           </div>
         </div>
-
-        <div class="flex-shrink-0 w-14">
+    
+        <div class="flex-shrink-0 w-14" aria-hidden="true">
           <!-- Force sidebar to shrink to fit close icon -->
         </div>
       </div>
-
-      {% comment %} Staic sidebar for the desktop{% endcomment %}
-      <div class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <div
-          class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white"
-        >
-          <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div class="flex items-center flex-shrink-0 px-4">
-              <a href="{% url 'classes'%}">
-                <img class="h-8 w-auto" src="{% static "images/EduLink (1).png" %}" alt="Workflow">
+    
+      <!-- Static sidebar for desktop -->
+      <div class="hidden lg:flex lg:flex-shrink-0">
+        <div class="flex flex-col w-64">
+          <!-- Sidebar component, swap this element with another sidebar if you like -->
+          <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">
+            <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+              <a href="{% url 'classes' %}" class="flex items-center flex-shrink-0 px-4">
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900   max-w-3xl overflow-hidden ">Classes.</h1>
               </a>
+              <nav class="mt-5 flex-1" aria-label="Sidebar">
+                <div class="px-2 space-y-1">
+                  <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+                  <a data-class-pk="{{class.pk}}" class="dashboard-button cursor-pointer bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <!--
+                      Heroicon name: outline/home
+    
+                      Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
+                    -->
+                    <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    Dashboard
+                  </a>
+    
+                  <a data-class-pk="{{class.pk}}" class="class-calendar cursor-pointer text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <!-- Heroicon name: outline/calendar -->
+                    <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Calendar
+                  </a>
+    
+                  <a data-class-pk="{{class.pk}}" class="members-button text-gray-600 cursor-pointer  hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <!-- Heroicon name: outline/user-group -->
+                    <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    Members
+                  </a>
+    
+                  <a data-class-pk="{{ class.pk }}" class="class-code-button text-gray-600 cursor-pointer  hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <!-- Heroicon name: outline/search-circle -->
+                    <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Class code
+                  </a>
+    
+                  <a data-class-pk="{{ class.pk }}"  class="class-announcements cursor-pointer  text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <!-- Heroicon name: outline/speakerphone -->
+                    <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                    </svg>
+                    Announcements
+                  </a>
+    
+                </div>
+              </nav>
             </div>
-            <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
-              <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-              <a
-                href="#"
-                class="home-link bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              >
-                <svg
-                  class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  />
-                </svg>
-                Home
-              </a>
-
-              <a
-                href=""
-                class="members-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/users -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-                Members
-              </a>
-
-              <a
-                href="#"
-                class="class-code-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/folder -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                  />
-                </svg>
-                Class code
-              </a>
-
-              <a
-                href="#"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/calendar -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Add something
-              </a>
-
-              <a
-                href="#"
-                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              >
-                <!-- Heroicon name: outline/inbox -->
-                <svg
-                  class="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                  />
-                </svg>
-                Documents
-              </a>
-            </nav>
-          </div>
-
-          {% comment %} Creator name {% endcomment %}
-          <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-            <a href="#" class="flex-shrink-0 w-full group block">
-              <div class="flex items-center">
-                <div>
-                  <img
-                    class="inline-block h-9 w-9 rounded-full"
-                    src="{% if class.creator.avatar.image %}{{ class.creator.avatar.image.url }}{% else %}https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80{% endif %}"
-                    alt=""
-                  />
+            <div class="flex-shrink-0 flex border-t border-gray-200 p-2 overflow-y-auto ">
+              
+                <div class="flex items-center overflow-y-auto ">
+                  <div>
+                    <img class="inline-block h-9 w-9 rounded-full" src="{{class.class_photo.url}}" alt="">
+                  </div>
+                  <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900 ">{{class.name}}</p>
+                    <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700 ">{{class.subject}}</p>
+                  </div>
                 </div>
-                <div class="ml-3">
-                  <p
-                    class="text-sm font-medium text-gray-700 group-hover:text-gray-900"
-                  >
-                    {{class.creator}}
-                  </p>
-                  <p
-                    class="text-xs font-medium text-gray-500 group-hover:text-gray-700"
-                  >
-                    {{class.creator.email}}
-                  </p>
-                </div>
-              </div>
-            </a>
+              
+            </div>
           </div>
         </div>
       </div>
 
-      {% comment %} Main content {% endcomment %}
-      <div class="md:pl-64 flex flex-col flex-1">
-        <div
-          class="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white"
-        >
-          <button
-            type="button"
-            class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-          >
-            <span class="sr-only">Open sidebar</span>
-            <!-- Heroicon name: outline/menu -->
-            <svg
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-        <main class="flex-1">
-          <div class="py-6">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <h1 class="text-2xl font-semibold text-gray-900">
-                {{class.name}}
-              </h1>
+
+      <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
+        <div class="lg:hidden">
+          <div class="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+            <div>
+              <h1 class="text-3xl font-extrabold tracking-tight text-gray-900  max-w-3xl overflow-hidden ">Classes.</h1>
             </div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <div class="py-4">
-                <div
-                id="membersContent" class="border-4 border-dashed border-gray-200 rounded-lg h-96 hidden" 
-                >
-                <ul role="list" class="divide-y divide-gray-200">
-                  {% for membership in class_memberships %}
-                  <li class="py-4 flex">
-                    <div class="flex items-center px-4 py-4 sm:px-6">
-                      <div class="min-w-0 flex-1 flex items-center">
-                        <div class="flex-shrink-0">
-                          <img class="h-12 w-12 rounded-full" src="{% if membership.member.avatar.image %}{{ membership.member.avatar.image.url }}{% else %}https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80{% endif %}" alt="">
-                        </div>
-                        <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                          <div>
-                            <p class="text-sm font-medium text--600 truncate">{{membership.member.username}}</p>
-                            <p class="mt-2 flex items-center text-sm text-gray-500">
-                              <!-- Heroicon name: solid/mail -->
-                              <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                              </svg>
-                              <span class="truncate">{{membership.member.email}}</span>
-                            </p>
-                          </div>
-                          <div class="hidden md:block">
-                            <div>
-                              <p class="text-sm text-gray-900">
-                                Joined on
-                                <time datetime="2020-01-07">{{membership.join_date}}</time>
-                              </p>
-                              <p class="mt-2 flex items-center text-sm text-gray-500">
-                                <!-- Heroicon name: solid/check-circle -->
-                                <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                Member with all the rights included
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <!-- Heroicon name: solid/chevron-right -->
-                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                    </div>
-                  </li>
-                  {% endfor %}
-                 
-                  
-                </ul>
-                </div>
-                <div
-                id="homeContent" class="border-4 border-dashed border-gray-200 rounded-lg h-96 hidden" 
-                >
-                <div class="flex items-start space-x-4">
-                  <div class="flex-shrink-0">
-                    <img class="inline-block h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                  </div>
-                  <div class="min-w-0 flex-1">
-                    <form action="#" class="relative">
-                      <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
-                        <label for="comment" class="sr-only">Add your comment</label>
-                        <textarea rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" placeholder="Add your comment..."></textarea>
-                
-                        <!-- Spacer element to match the height of the toolbar -->
-                        <div class="py-2" aria-hidden="true">
-                          <!-- Matches height of button in toolbar (1px border + 36px content height) -->
-                          <div class="py-px">
-                            <div class="h-9"></div>
-                          </div>
-                        </div>
-                      </div>
-                
-                      <div class="absolute bottom-0 inset-x-0 pl-3 pr-2 py-2 flex justify-between">
-                        <div class="flex items-center space-x-5">
-                          <div class="flex items-center">
-                            <button type="button" class="-m-2.5 w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-500">
-                              <!-- Heroicon name: solid/paper-clip -->
-                              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                              </svg>
-                              <span class="sr-only">Attach a file</span>
-                            </button>
-                          </div>
-                          <div class="flex items-center">
-                            <div>
-                              <label id="listbox-label" class="sr-only"> Your mood </label>
-                              <div class="relative">
-                                <button type="button" class="relative -m-2.5 w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-500" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
-                                  <span class="flex items-center justify-center">
-                                    <!-- Placeholder label, show/hide based on listbox state. -->
-                                    <span>
-                                      <!-- Heroicon name: solid/emoji-happy -->
-                                      <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd" />
-                                      </svg>
-                                      <span class="sr-only"> Add your mood </span>
-                                    </span>
-                                    <!-- Selected item label, show/hide based on listbox state. -->
-                                    <span>
-                                      <div class="bg-red-500 w-8 h-8 rounded-full flex items-center justify-center">
-                                        <!-- Heroicon name: solid/fire -->
-                                        <svg class="flex-shrink-0 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                          <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
-                                        </svg>
-                                      </div>
-                                      <span class="sr-only"> Excited </span>
-                                    </span>
-                                  </span>
-                                </button>
-                
-                                <!--
-                                  Select popover, show/hide based on select state.
-                
-                                  Entering: ""
-                                    From: ""
-                                    To: ""
-                                  Leaving: "transition ease-in duration-100"
-                                    From: "opacity-100"
-                                    To: "opacity-0"
-                                -->
-                                <ul class="absolute z-10 mt-1 -ml-6 w-60 bg-white shadow rounded-lg py-3 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:ml-auto sm:w-64 sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-5">
-                                  <!--
-                                    Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-                
-                                    Highlighted: "bg-gray-100", Not Highlighted: "bg-white"
-                                  -->
-                                  <li class="bg-white cursor-default select-none relative py-2 px-3" id="listbox-option-0" role="option">
-                                    <div class="flex items-center">
-                                      <div class="bg-red-500 w-8 h-8 rounded-full flex items-center justify-center">
-                                        <!-- Heroicon name: solid/fire -->
-                                        <svg class="text-white flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                          <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
-                                        </svg>
-                                      </div>
-                                      <span class="ml-3 block font-medium truncate"> Excited </span>
-                                    </div>
-                                  </li>
-                
-                                  <!--
-                                    Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-                
-                                    Highlighted: "bg-gray-100", Not Highlighted: "bg-white"
-                                  -->
-                                  <li class="bg-white cursor-default select-none relative py-2 px-3" id="listbox-option-1" role="option">
-                                    <div class="flex items-center">
-                                      <div class="bg-pink-400 w-8 h-8 rounded-full flex items-center justify-center">
-                                        <!-- Heroicon name: solid/heart -->
-                                        <svg class="text-white flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                          <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-                                        </svg>
-                                      </div>
-                                      <span class="ml-3 block font-medium truncate"> Loved </span>
-                                    </div>
-                                  </li>
-                
-                                  <!--
-                                    Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-                
-                                    Highlighted: "bg-gray-100", Not Highlighted: "bg-white"
-                                  -->
-                                  <li class="bg-white cursor-default select-none relative py-2 px-3" id="listbox-option-2" role="option">
-                                    <div class="flex items-center">
-                                      <div class="bg-green-400 w-8 h-8 rounded-full flex items-center justify-center">
-                                        <!-- Heroicon name: solid/emoji-happy -->
-                                        <svg class="text-white flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd" />
-                                        </svg>
-                                      </div>
-                                      <span class="ml-3 block font-medium truncate"> Happy </span>
-                                    </div>
-                                  </li>
-                
-                                  <!--
-                                    Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-                
-                                    Highlighted: "bg-gray-100", Not Highlighted: "bg-white"
-                                  -->
-                                  <li class="bg-white cursor-default select-none relative py-2 px-3" id="listbox-option-3" role="option">
-                                    <div class="flex items-center">
-                                      <div class="bg-yellow-400 w-8 h-8 rounded-full flex items-center justify-center">
-                                        <!-- Heroicon name: solid/emoji-sad -->
-                                        <svg class="text-white flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7.536 5.879a1 1 0 001.415 0 3 3 0 014.242 0 1 1 0 001.415-1.415 5 5 0 00-7.072 0 1 1 0 000 1.415z" clip-rule="evenodd" />
-                                        </svg>
-                                      </div>
-                                      <span class="ml-3 block font-medium truncate"> Sad </span>
-                                    </div>
-                                  </li>
-                
-                                  <!--
-                                    Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-                
-                                    Highlighted: "bg-gray-100", Not Highlighted: "bg-white"
-                                  -->
-                                  <li class="bg-white cursor-default select-none relative py-2 px-3" id="listbox-option-4" role="option">
-                                    <div class="flex items-center">
-                                      <div class="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center">
-                                        <!-- Heroicon name: solid/thumb-up -->
-                                        <svg class="text-white flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                        </svg>
-                                      </div>
-                                      <span class="ml-3 block font-medium truncate"> Thumbsy </span>
-                                    </div>
-                                  </li>
-                
-                                  <!--
-                                    Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-                
-                                    Highlighted: "bg-gray-100", Not Highlighted: "bg-white"
-                                  -->
-                                  <li class="bg-white cursor-default select-none relative py-2 px-3" id="listbox-option-5" role="option">
-                                    <div class="flex items-center">
-                                      <div class="bg-transparent w-8 h-8 rounded-full flex items-center justify-center">
-                                        <!-- Heroicon name: solid/x -->
-                                        <svg class="text-gray-400 flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                      </div>
-                                      <span class="ml-3 block font-medium truncate"> I feel nothing </span>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="flex-shrink-0">
-                          <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Post</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                </div>
-
-
-                <div
-                id="classcodeContent" class="flex items-center border-4 border-dashed justify-center border-gray-200 rounded-lg h-96 hidden" 
-                >
-                  <div class="flex justify-center items-center">
-                      
-                    <div class="w-full max-w-md bg-white  border border-gray-200  shadow rounded-lg p-5">
-                      <h2 class="text-lg font-semibold text-gray-900  mb-2">Class code details</h2>
-                      <address class="relative bg-gray-50 p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-2">
-                          <div class="space-y-2 text-gray-500 dark:text-gray-400 leading-loose hidden sm:block">
-                              Class  <br />
-                              Creator <br />
-                              Code
-                          </div>
-                          <div id="contact-details" class="space-y-2 text-gray-900  font-medium leading-loose">
-                              {{class.name}} <br />
-                              {{class.creator}} <br />
-                            {{class.code}}
-                          </div>
-                          <button data-copy-to-clipboard-target="contact-details" data-copy-to-clipboard-content-type="textContent" data-tooltip-target="tooltip-contact-details" class="absolute end-1 top-1 text-gray-500   rounded-lg p-2 inline-flex items-center justify-center">
-                              <span id="default-icon-contact-details">
-                                  <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                      <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
-                                  </svg>
-                              </span>
-                              <span id="success-icon-contact-details" class="hidden inline-flex items-center">
-                                  <svg class="w-3.5 h-3.5 text-blue-700 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                                  </svg>
-                              </span>
-                          </button>
-                          <div id="tooltip-contact-details" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                              <span id="default-tooltip-message-contact-details">Copy to clipboard</span>
-                              <span id="success-tooltip-message-contact-details" class="hidden">Copied!</span>
-                              <div class="tooltip-arrow" data-popper-arrow></div>
-                          </div>
-                      </address>
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-                </div>
-                
-                
-              </div>
+            <div>
+              <button type="button" class="-mr-3 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900">
+                <span class="sr-only">Open sidebar</span>
+                <!-- Heroicon name: outline/menu -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
             </div>
           </div>
-        </main>
+        </div>
+        <div class="flex-1 relative z-0 flex overflow-y-auto">
+          <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+            <!-- Start main area-->
+            <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 mb-2">
+              <div class="h-full border-2 border-gray-200 border-dashed rounded-lg">
+
+                <div class="relative border-2 h-48 rounded-lg ">
+                  <div class="absolute h-full inset-0">
+                    <img class="w-full h-full object-contain " src="{% static "images/undraw_online_learning_re_qw08 (2).svg" %}" alt="">
+                    <div class="absolute inset-0  mix-blend-multiply p-4 overflow-y-auto" aria-hidden="true">
+
+                      <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-5xl  max-w-3xl overflow-hidden ">{{class.name}}</h1>
+                      <p class="text-xl text-indigo-400 max-w-3xl">{{class.subject}}</p>
+                      <p class="text-xl text-indigo-600 max-w-3xl">{{class.section}}</p>
+                      
+
+                    </div>
+                  </div>
+                 
+                </div>
+
+                <form class="mt-1 p-1">
+                  <label for="chat" class="sr-only">Add something...</label>
+                  <div class="flex items-center px-3 py-2 rounded-lg bg-gray-100 ">
+                     
+
+                        <label for="imageInput" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100">
+                          <svg class="w-5 h-5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                              <path fill="currentColor" d="M13 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM7.565 7.423 4.5 14h11.518l-2.516-3.71L11 13 7.565 7.423Z"/>
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 1H2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM7.565 7.423 4.5 14h11.518l-2.516-3.71L11 13 7.565 7.423Z"/>
+                          </svg>
+                          
+                      </label>
+                      
+                      <input type="file" id="imageInput" class="hidden" accept="image/*"  />
+                  
+
+                      <label for="file-input" class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 20">
+                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"/>
+                        </svg>
+                        <span class="sr-only">Attach file</span>
+                      </label>
+                    
+                      <input type="file" id="file-input" class="hidden" accept="*" />
+                    
+                      
+                     
+
+                      <textarea id="chat" rows="1" class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Add something..."></textarea>
+                          <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 ">
+                          <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                              <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
+                          </svg>
+                          <span class="sr-only">Send message</span>
+                      </button>
+                  </div>
+              </form>
+
+              
+
+
+             
+
+               
+
+              </div>
+            </div>
+            <!-- End main area -->
+          </main>
+          <aside class="hidden relative xl:flex xl:flex-col flex-shrink-0 w-96 border-l border-gray-200 overflow-y-auto">
+            <!-- Start secondary column (hidden on smaller screens) -->
+            <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
+              <div class="h-full border-2 border-gray-200 border-dashed rounded-lg"></div>
+            </div>
+            <!-- End secondary column -->
+          </aside>
+        </div>
       </div>
     </div>
+    
   </body>
 </html>

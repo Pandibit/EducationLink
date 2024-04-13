@@ -358,4 +358,53 @@ def spec_room(request, pk):
 
 @login_required(login_url="login_view")
 def plan(request):
-    return render(request, "plan.html")
+    current_user = request.user
+    return render(request, "plan.html",{'user': current_user} )  
+
+
+
+@login_required(login_url="login_view")
+def class_members(request, pk):
+    # Retrieve the class object using class_id
+    my_class = get_object_or_404(Class, pk=pk)
+
+    # Retrieve class memberships for the specific class
+    class_memberships = ClassMembership.objects.filter(specific_class=my_class)
+
+    # Render the class_members.html template with the retrieved data
+    return render(request, 'class_members.html', {'class': my_class, 'class_memberships': class_memberships})
+
+
+@login_required(login_url="login_view")
+def class_code(request, pk):
+    
+    my_class = get_object_or_404(Class, pk=pk)
+
+    class_memberships = ClassMembership.objects.filter(specific_class=my_class)
+    return render(request, 'class_code.html', {'class': my_class})
+
+
+
+
+@login_required(login_url="login_view")
+def class_announcements(request, pk):
+    # Retrieve the class object using pk
+    my_class = get_object_or_404(Class, pk=pk)
+
+    class_memberships = ClassMembership.objects.filter(specific_class=my_class)
+
+    # Render the class_members.html template with the retrieved data
+    return render(request, 'class_announcements.html', {'class': my_class, 'class_memberships': class_memberships})
+    
+
+   
+
+@login_required(login_url="login_view")
+def class_calendar(request, pk):
+    # Retrieve the class object using pk
+    my_class = get_object_or_404(Class, pk=pk)
+
+    class_memberships = ClassMembership.objects.filter(specific_class=my_class)
+
+    # Render the class_members.html template with the retrieved data
+    return render(request, 'class_calendar.html', {'class': my_class, 'class_memberships': class_memberships})

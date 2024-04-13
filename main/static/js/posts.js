@@ -142,16 +142,31 @@ document.addEventListener("DOMContentLoaded", function () {
   var loadMenuButton = document.getElementById("user-menu-button");
   var userMenu = document.getElementById("user-menu");
 
-  loadMenuButton.addEventListener("click", function () {
-    var isHidden = userMenu.classList.contains("hidden");
+  loadMenuButton.addEventListener("click", function (event) {
+      event.stopPropagation(); // Prevent the click event from bubbling to document
+      var isHidden = userMenu.classList.contains("hidden");
 
-    if (isHidden) {
-      userMenu.classList.remove("hidden");
-    } else {
-      userMenu.classList.add("hidden");
-    }
+      if (isHidden) {
+          userMenu.classList.remove("hidden");
+      } else {
+          userMenu.classList.add("hidden");
+      }
+  });
+
+  // Add a click event listener to the document body
+  document.body.addEventListener("click", function (event) {
+      var targetElement = event.target;
+
+      // Check if the clicked element is not inside the userMenu
+      if (!userMenu.contains(targetElement) && targetElement !== loadMenuButton) {
+          // Hide the userMenu if it's visible
+          if (!userMenu.classList.contains("hidden")) {
+              userMenu.classList.add("hidden");
+          }
+      }
   });
 });
+
 
 // Toggle the modal -> Create the new post modal
 
@@ -461,3 +476,29 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleProfileSign(event);
   });
 });
+
+
+
+function updateFileLabelPost(event) {
+  const fileInput = event.target;
+  const fileName = fileInput.files[0].name; 
+
+  const fileLabel = document.getElementById('file_label_post');
+  if (fileLabel) {
+      fileLabel.textContent = fileName;
+      fileLabel.classList.add('text-blue-600')  
+  }
+}
+
+
+
+function updateFileLabelPostUpdate(event) {
+  const fileInput = event.target;
+  const fileName = fileInput.files[0].name; 
+
+  const fileLabel = document.getElementById('file_label_post_update');
+  if (fileLabel) {
+      fileLabel.textContent = fileName;
+      fileLabel.classList.add('text-blue-600') 
+  }
+}

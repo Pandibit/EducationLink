@@ -355,52 +355,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//Clicking the join instead to laod the join modal
-document.addEventListener("DOMContentLoaded", function () {
-  // Select the create class link
-  const joinClassButton = document.getElementById("join-instead");
-
-  // Select the modal and overlay
-  const modal = document.getElementById("modal-join");
-  const overlay = document.querySelector(".bg-gray-500");
-
-  // Function to hide modal and overlay
-  function hideModal() {
-    modal.classList.add("hidden");
-    overlay.classList.add("hidden");
-  }
-
-  // Add event listener to the create class link
-  joinClassButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    // Display the modal and overlay
-    modal.classList.remove("hidden");
-    overlay.classList.remove("hidden");
-  });
-
-  // Add event listener to the overlay to hide modal when clicked outside
-  overlay.addEventListener("click", function (event) {
-    if (event.target === overlay) {
-      hideModal();
-    }
-  });
-
-  // Select the cancel button
-  const cancelButton = document.getElementById("cancelButton");
-
-  // Add event listener to the cancel button
-  cancelButton.addEventListener("click", function () {
-    // Hide the modal and overlay
-    hideModal();
-  });
-
-  // Add event listener to the Escape key to hide modal
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && !modal.classList.contains("hidden")) {
-      hideModal();
-    }
-  });
-});
 
 // Toogle the user_profile
 document.addEventListener("DOMContentLoaded", function () {
@@ -556,6 +510,179 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("click", function (event) {
     if (event.target === unenrollClassModal) {
       unenrollClassModal.classList.add("hidden");
+    }
+  });
+});
+
+
+
+function updateFileLabelClasses(event) {
+  const fileInputClasses = event.target;
+  const fileNameClasses = fileInputClasses.files[0].name; // Get the name of the selected file
+
+  const fileLabelClasses = document.getElementById('file_label');
+  if (fileLabelClasses) {
+      fileLabelClasses.textContent = fileNameClasses; // Update the label text with the file name
+  }
+}
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const userMenuBtn = document.getElementById("user-menu-button");
+  const userMenu = document.getElementById("user-menu");
+
+  
+  userMenuBtn.addEventListener("click", function (event) {
+      
+      toggleMenu();
+      event.stopPropagation();
+  });
+
+  
+  document.body.addEventListener("click", function (event) {
+      const target = event.target;
+
+      
+      if (!target.closest("#user-menu-button") && !target.closest("#user-menu")) {
+         
+          hideMenu();
+      }
+  });
+
+ 
+  const allButtons = document.querySelectorAll("button");
+  allButtons.forEach(button => {
+      if (button !== userMenuBtn) {
+          button.addEventListener("click", function () {
+              
+              hideMenu();
+          });
+      }
+  });
+
+ 
+  function toggleMenu() {
+      if (userMenu.classList.contains("hidden")) {
+          
+          userMenu.classList.remove("hidden");
+          userMenu.classList.add("block");
+      } else {
+          
+          hideMenu();
+      }
+  }
+
+  
+  function hideMenu() {
+      userMenu.classList.add("hidden");
+      userMenu.classList.remove("block");
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  
+  const classMenuBtn = document.getElementById("class-menu-btn");
+  const classMenu = document.getElementById("class-menu");
+
+  
+  classMenuBtn.addEventListener("click", function (event) {
+      
+      toggleMenu();
+      event.stopPropagation();
+  });
+
+  
+  document.body.addEventListener("click", function (event) {
+      const target = event.target;
+
+      
+      if (!target.closest("#class-menu-btn") && !target.closest("#class-menu")) {
+         
+          hideMenu();
+      }
+  });
+
+ 
+  const allButtons = document.querySelectorAll("button");
+  allButtons.forEach(button => {
+      if (button !== classMenuBtn) {
+          button.addEventListener("click", function () {
+              
+              hideMenu();
+          });
+      }
+  });
+
+ 
+  function toggleMenu() {
+      if (classMenu.classList.contains("hidden")) {
+          
+          classMenu.classList.remove("hidden");
+        classMenu.classList.add("block");
+      } else {
+          
+          hideMenu();
+      }
+  }
+
+  
+  function hideMenu() {
+      classMenu.classList.add("hidden");
+      classMenu.classList.remove("block");
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Select the create class link
+  const joinClassLink = document.getElementById("join-button");
+
+  // Select the modal and overlay
+  const joinmodal = document.getElementById("modal-join");
+  const overlay = document.querySelector(".bg-gray-500");
+
+  // Function to hide modal and overlay
+  function hidejoinModal() {
+    joinmodal.classList.add("hidden");
+    overlay.classList.add("hidden");
+  }
+
+  // Add event listener to the create class link
+  joinClassLink.addEventListener("click", function (event) {
+    event.preventDefault();
+    // Display the modal and overlay
+    joinmodal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+  });
+
+  // Add event listener to the overlay to hide modal when clicked outside
+  overlay.addEventListener("click", function (event) {
+    if (event.target === overlay) {
+      hidejoinModal();
+    }
+  });
+
+  // Select the cancel button
+  const cancelButton = document.getElementById("cancelButton-join");
+
+  // Add event listener to the cancel button
+  cancelButton.addEventListener("click", function () {
+    // Hide the modal and overlay
+    hidejoinModal();
+  });
+
+  // Add event listener to the Escape key to hide modal
+  document.addEventListener("keydown", function (event) {
+    if (
+      event.key === "Escape" &&
+      !joinmodal.classList.contains("hidden")
+    ) {
+      hidejoinModal();
     }
   });
 });

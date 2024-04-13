@@ -24,9 +24,12 @@ urlpatterns = [
     path('delete-room/<int:room_id>/', views.delete_room, name='delete_room'),
     path('room/<int:pk>/', views.spec_room, name='spec_room'),
     path('plan', views.plan, name='plan'),
-    
+    path('class/<int:pk>/members/', views.class_members, name='class_members'),
+    path('class/<int:pk>/code/', views.class_code, name='class_code'),
+    path('class/<int:pk>/announcements/', views.class_announcements, name='class_announcements'),
+    path('class/<int:pk>/calendar/', views.class_calendar, name='class_calendar'),
+
     
 
-  
 ]
 

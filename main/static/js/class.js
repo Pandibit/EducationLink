@@ -1,41 +1,95 @@
+
 document.addEventListener("DOMContentLoaded", function () {
-  const membersLink = document.querySelector(".members-link");
-  const homeLink = document.querySelector(".home-link");
-  const classcodeLink = document.querySelector(".class-code-link");
-  const membersContent = document.getElementById("membersContent");
-  const homeContent = document.getElementById("homeContent");
-  const classcodeContent = document.getElementById("classcodeContent");
+  var membersButtons = document.querySelectorAll(".dashboard-button");
 
-  // Add click event listener to members link
-  membersLink.addEventListener("click", function (event) {
-    // Prevent default behavior of link click
-    event.preventDefault();
+  membersButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var classPk = button.getAttribute("data-class-pk");
+      console.log("Class PK:", classPk);
 
-    // Show members content and hide home content
-    membersContent.classList.remove("hidden");
-    homeContent.classList.add("hidden");
-    classcodeContent.classList.add("hidden");
-  });
+      // Construct the URL for the members page using the class PK
+      var membersUrl = "/class/" + classPk;
+      console.log("Members URL:", membersUrl);
 
-  // Add click event listener to home link
-  homeLink.addEventListener("click", function (event) {
-    // Prevent default behavior of link click
-    event.preventDefault();
-
-    // Show home content and hide members content
-    membersContent.classList.add("hidden");
-    classcodeContent.classList.add("hidden");
-    homeContent.classList.remove("hidden");
-  });
-
-  classcodeLink.addEventListener("click", function (event) {
-    // Prevent default behavior of link click
-    event.preventDefault();
-
-    // Show home content and hide members content
-    membersContent.classList.add("hidden");
-    homeContent.classList.add("hidden");
-
-    classcodeContent.classList.remove("hidden");
+      // Navigate to the members page URL
+      window.location.href = membersUrl;
+    });
   });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var membersButtons = document.querySelectorAll(".members-button");
+  
+    membersButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var classPk = button.getAttribute("data-class-pk");
+        console.log("Class PK:", classPk);
+  
+        // Construct the URL for the members page using the class PK
+        var membersUrl = "/class/" + classPk + "/members/";
+        console.log("Members URL:", membersUrl);
+  
+        // Navigate to the members page URL
+        window.location.href = membersUrl;
+      });
+    });
+  });
+  
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var membersButtons = document.querySelectorAll(".class-code-button");
+  
+    membersButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var classPk = button.getAttribute("data-class-pk");
+        console.log("Class PK:", classPk);
+  
+        // Construct the URL for the members page using the class PK
+        var membersUrl = "/class/" + classPk + "/code/";
+        console.log("Members URL:", membersUrl);
+  
+        // Navigate to the members page URL
+        window.location.href = membersUrl;
+      });
+    });
+  });
+  
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var membersButtons = document.querySelectorAll(".class-announcements");
+  
+    membersButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var classPk = button.getAttribute("data-class-pk");
+        console.log("Class PK:", classPk);
+  
+        // Construct the URL for the members page using the class PK
+        var membersUrl = "/class/" + classPk + "/announcements/";
+        console.log("Members URL:", membersUrl);
+  
+        // Navigate to the members page URL
+        window.location.href = membersUrl;
+      });
+    });
+  });
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var membersButtons = document.querySelectorAll(".class-calendar");
+  
+    membersButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var classPk = button.getAttribute("data-class-pk");
+        console.log("Class PK:", classPk);
+  
+        // Construct the URL for the members page using the class PK
+        var membersUrl = "/class/" + classPk + "/calendar/";
+        console.log("Members URL:", membersUrl);
+  
+        // Navigate to the members page URL
+        window.location.href = membersUrl;
+      });
+    });
+  });
