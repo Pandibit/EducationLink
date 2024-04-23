@@ -28,6 +28,7 @@ urlpatterns = [
     path('class/<int:pk>/code/', views.class_code, name='class_code'),
     path('class/<int:pk>/announcements/', views.class_announcements, name='class_announcements'),
     path('class/<int:pk>/calendar/', views.class_calendar, name='class_calendar'),
+    path('save_plan/', views.save_plan, name='save_plan'),
 
     
 

@@ -490,8 +490,6 @@ function updateFileLabelPost(event) {
   }
 }
 
-
-
 function updateFileLabelPostUpdate(event) {
   const fileInput = event.target;
   const fileName = fileInput.files[0].name; 
@@ -502,3 +500,53 @@ function updateFileLabelPostUpdate(event) {
       fileLabel.classList.add('text-blue-600') 
   }
 }
+
+
+async function downloadImage(imageSrc) {
+  try {
+      // Fetch the image using its URL
+      const imageResponse = await fetch(imageSrc);
+
+      // Get the image data as a blob
+      const imageBlob = await imageResponse.blob();
+
+      // Determine the file extension based on the image source
+      const fileExtension = imageSrc.split('.').pop().toLowerCase();
+
+      // Create a URL for the blob
+      const imageURL = URL.createObjectURL(imageBlob);
+
+      // Create a temporary <a> element to trigger the download
+      const downloadLink = document.createElement('a');
+      downloadLink.href = imageURL;
+
+      // Set the download filename based on the file extension
+      let downloadFilename = 'image'; // Default filename
+
+      if (fileExtension === 'jpeg' || fileExtension === 'jpg') {
+          downloadFilename += '.jpg';
+      } else if (fileExtension === 'png') {
+          downloadFilename += '.png';
+      } else if (fileExtension === 'svg') {
+          downloadFilename += '.svg';
+      } else {
+          // Handle other image types if needed
+          downloadFilename += `.${fileExtension}`;
+      }
+
+      downloadLink.download = downloadFilename;
+
+      // Append the <a> element to the document body and trigger the download
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+
+      // Clean up: Remove the <a> element from the document body
+      document.body.removeChild(downloadLink);
+
+      // Revoke the object URL to free up memory
+      URL.revokeObjectURL(imageURL);
+  } catch (error) {
+      console.error('Error downloading image:', error);
+  }
+}
+

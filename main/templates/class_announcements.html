@@ -151,7 +151,7 @@
           <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <a href="{% url 'classes' %}" class="flex items-center flex-shrink-0 px-4">
-                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900   max-w-3xl overflow-hidden ">Classes.</h1>
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-600   max-w-3xl overflow-hidden ">Classes</h1>
               </a>
               <nav class="mt-5 flex-1" aria-label="Sidebar">
                 <div class="px-2 space-y-1">
@@ -192,7 +192,7 @@
                     Class code
                   </a>
     
-                  <a data-class-pk="{{ class.pk }}" class="class-announcements cursor-pointer bg-gray-200 text-gray-900 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                  <a data-class-pk="{{ class.pk }}" class="class-announcements cursor-pointer bg-gray-300 text-gray-900 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                     <!-- Heroicon name: outline/speakerphone -->
                     <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
@@ -203,19 +203,27 @@
                 </div>
               </nav>
             </div>
-            <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-               
-                <div class="flex items-center">
-                  <div>
-                    <img class="inline-block h-9 w-9 rounded-full" src="{{class.class_photo.url}}" alt="">
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">{{class.name}}</p>
-                    <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">{{class.subject}}</p>
-                  </div>
-                </div>
+            <div class="flex-shrink-0 overflow-y-auto flex border-t border-gray-200 p-3">
               
-            </div>
+              <div class="flex items-center justify-between ">
+                
+                <div class="overflow-hidden ml-2">
+                  <div class="flex justify-center items-center">
+                    <img width="30" height="30" src="https://img.icons8.com/plasticine/100/class.png" alt="class"/>
+                    <p class=" ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate">{{class.name}}</p>
+                  </div>
+                  
+                  <div class="flex ">
+                    <img width="30" height="30" src="https://img.icons8.com/bubbles/50/writer-male.png" alt="writer-male"/>
+                    <p class="text-xs ml-2 font-medium text-gray-500 group-hover:text-gray-700 truncate flex justify-center items-center">{{class.creator}}</p>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            
+          </div>
+           
           </div>
         </div>
       </div>
@@ -240,40 +248,64 @@
         </div>
         <div class="flex-1 relative z-0 flex overflow-hidden">
           <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
-            <!-- Start main area-->
-            <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-              <div class="h-full border-2 border-gray-200 border-dashed rounded-lg">
-                
-               
-                  
-                
+            
+            <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 mb-2 ">
+              <div class="h-full border-2 border-gray-200 overflow-y-auto  rounded-lg">
 
+                <div class="relative flex justify-center  items-center border-b-2 h-48 bg-gray-600 rounded ">
 
-                <form class="p-2 flex flex-col items-start justify-start">
-                  
-                  <h2 class="text-3xl font-extrabold sm:text-2xl flex justify-center items-center">
-                    <span class="block">Make an announcement </span>
-                  </h2>
+                  <div class="w-1/2 h-full px-5 py-3 flex justify-start items-end ">
 
-                  <div class="w-3/4 mb-4 border border-gray-300 rounded-lg bg-gray-100 mt-8 sm:w-4/5 ">
-                      <div class="px-4 py-2 bg-gray-100 rounded-t-lg ">
-                          <label for="comment" class="sr-only">Your comment</label>
-                          <textarea id="comment" rows="2" class="block  p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="  Write a comment..." required /></textarea>
-                      </div>
-                      <div class="flex items-center justify-between px-3 py-2 border-t border-gray-400 ">
-                          <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200  hover:bg-blue-800">
-                              Post comment
-                          </button>
-                          
-                      </div>
+                    <div class="flex flex-col truncate ">
+
+                      <h1 class="mt-2 text-4xl tracking-tight font-extrabold text-white truncate">
+                        {{class.name}}
+                      </h1>
+                      <p class="mt-1 text-lg tracking-tight font-extrabold text-white truncate ">{{class.section}}</p>
+                    </div>
+
                   </div>
-               </form>
                   
-               
+                  <div class="w-2/4 h-full">
+                      <img src="{% static "images\DrawKit Vector Illustration Team Work (19).svg" %}" class="w-full h-full object-cover  object-center hover:scale-140" alt="">
+                  </div>
+                  
+                 
+                </div>
+
+                
+                <div class="flex items-start space-x-4 p-5">
+                  <div class="flex-shrink-0">
+                    <img class="inline-block h-10 w-10 rounded-full" src="{% if user.avatar.image %}{{ user.avatar.image.url }}{% else %}{% static "images\icons8-avatar.gif" %}{% endif %}" alt="">
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <form action="">
+                      <div class="border-b border-gray-200 focus-within:border-indigo-600">
+                        <label for="comment" class="sr-only p-3">Add your comment</label>
+                        <textarea rows="2" name="comment" id="comment" class="p-2 rounded-md block w-full border-0 border-b border-transparent  pb-2 resize-none bg-gray-100  sm:text-sm" placeholder="Announce something {{user.username}} ..."></textarea>
+                      </div>
+                      <div class="pt-2 flex justify-between">
+                        <div class="flex items-center space-x-5">
+                          
+                          
+                        </div>
+                        <div class="flex-shrink-0">
+                          
+                          <button class="inline-flex flex justify-center items-center items-center px-2 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white  hover:bg-gray-300 ">
+                            
+                            <img width="20" height="20" src="https://img.icons8.com/dusk/64/commercial.png" alt="commercial"/>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                
+                
 
               </div>
             </div>
-            <!-- End main area -->
+            
           </main>
           
         </div>

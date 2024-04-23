@@ -528,10 +528,6 @@ function updateFileLabelClasses(event) {
 
 
 
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
   const userMenuBtn = document.getElementById("user-menu-button");
   const userMenu = document.getElementById("user-menu");
@@ -686,3 +682,102 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Select all dropdown buttons within list items
+  const dropdownButtons = document.querySelectorAll('[data-dropdown-toggle="dropdown"]');
+
+  // Function to show a specific dropdown menu
+  function showDropdown(dropdownMenu) {
+      dropdownMenu.classList.remove('hidden');
+  }
+
+  // Function to hide a specific dropdown menu
+  function hideDropdown(dropdownMenu) {
+      dropdownMenu.classList.add('hidden');
+  }
+
+  // Toggle dropdown menu visibility when dropdown button is clicked
+  dropdownButtons.forEach((button) => {
+      const dropdownMenu = button.nextElementSibling; // Assuming the dropdown menu follows the button in the DOM
+
+      button.addEventListener('click', (event) => {
+          event.stopPropagation(); // Prevent document click event from immediately hiding the dropdown
+
+          const isVisible = !dropdownMenu.classList.contains('hidden');
+          
+          // Hide all dropdown menus before showing the clicked one
+          dropdownButtons.forEach((btn) => {
+              const menu = btn.nextElementSibling;
+              if (menu !== dropdownMenu) {
+                  hideDropdown(menu);
+              }
+          });
+
+          // Toggle visibility of the clicked dropdown menu
+          if (isVisible) {
+              hideDropdown(dropdownMenu);
+          } else {
+              showDropdown(dropdownMenu);
+          }
+      });
+  });
+
+  // Add click event listener to the document to handle outside clicks
+  document.addEventListener('click', (event) => {
+      const isClickedOnDropdown = event.target.matches('[data-dropdown-toggle="dropdown"]');
+      const isClickedInsideDropdown = event.target.closest('.dropdown');
+
+      // If clicked outside any dropdown or its associated button, hide all dropdown menus
+      if (!isClickedOnDropdown && !isClickedInsideDropdown) {
+          dropdownButtons.forEach((button) => {
+              const dropdownMenu = button.nextElementSibling;
+              hideDropdown(dropdownMenu);
+          });
+      }
+  });
+
+  // Add click event listeners to all dropdown links to hide dropdowns when clicked
+  const dropdownLinks = document.querySelectorAll('.dropdown a');
+  dropdownLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+          dropdownButtons.forEach((button) => {
+              const dropdownMenu = button.nextElementSibling;
+              hideDropdown(dropdownMenu);
+          });
+      });
+  });
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const joinButton = document.getElementById('join-button');
+  const createButton = document.getElementById('create-button');
+  const classMenu = document.getElementById('class-menu');
+
+  // Function to hide the class menu
+  function hideClassMenu() {
+      classMenu.classList.add('hidden');
+  }
+
+  // Add click event listener to the Join button
+  if (joinButton) {
+      joinButton.addEventListener('click', () => {
+          hideClassMenu();
+      });
+  }
+
+  // Add click event listener to the Create button
+  if (createButton) {
+      createButton.addEventListener('click', () => {
+          hideClassMenu();
+      });
+  }
+
+  });
+
+

@@ -94,32 +94,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  const copyToClipboard = (text) => {
-    const input = document.createElement('textarea');
-    input.value = text;
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand('copy');
-    document.body.removeChild(input);
-};
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('copy-button').addEventListener('click', function() {
+        var classCodeInput = document.getElementById('class-code');
 
-const copyButton = document.querySelector('[data-copy-target="#class-code"]');
-const successIcon = document.getElementById('success-icon');
-const successTooltipMessage = document.getElementById('success-tooltip-message');
+        
+        var code = classCodeInput.value;
 
-copyButton.addEventListener('click', () => {
-    const codeElement = document.getElementById('class-code');
-    const classCode = codeElement.textContent || codeElement.innerText;
-
-    copyToClipboard(classCode);
-
-    // Show success icon and tooltip message
-    successIcon.classList.remove('hidden');
-    successTooltipMessage.classList.remove('hidden');
-
-    // Hide success message after 2 seconds
-    setTimeout(() => {
-        successIcon.classList.add('hidden');
-        successTooltipMessage.classList.add('hidden');
-    }, 2000);
+        
+        try {
+            // Copy the value to the clipboard
+            navigator.clipboard.writeText(code)
+                .then(function() {
+                    console.log('Copying text was successful');
+                    console.log(code);
+                    
+                    var copyButton = document.getElementById('copy-button');
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(function() {
+                        copyButton.textContent = 'Copy';
+                    }, 1000); 
+                })
+                .catch(function(err) {
+                    console.error('Unable to copy text: ', err);
+                });
+        } catch (err) {
+            console.error('Unable to copy text: ', err);
+        }
+    });
 });

@@ -150,33 +150,27 @@
           <!-- Sidebar component, swap this element with another sidebar if you like -->
           <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <a href="{% url 'classes' %}" class="flex items-center flex-shrink-0 px-4">
-                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900   max-w-3xl overflow-hidden ">Classes.</h1>
+              <a href="{% url 'classes' %}" class="flex items-center justify-start  flex-shrink-0 px-4">
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-500   max-w-3xl overflow-hidden ">Classes</h1>
               </a>
               <nav class="mt-5 flex-1" aria-label="Sidebar">
                 <div class="px-2 space-y-1">
-                  <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-                  <a data-class-pk="{{ class.pk }}" class="dashboard-button cursor-pointer text-gray-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                    <!--
-                      Heroicon name: outline/home
-    
-                      Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
-                    -->
+                  <a data-class-pk="{{ class.pk }}" class="dashboard-button cursor-pointer text-gray-600 group hover:bg-gray-50  flex items-center px-2 py-2 text-sm font-medium rounded-md">    
                     <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     Dashboard
                   </a>
     
-                  <a  data-class-pk="{{ class.pk }}" class="class-calendar cursor-pointer text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                  <a data-class-pk="{{ class.pk }}" class="class-calendar cursor-pointer text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                     <!-- Heroicon name: outline/calendar -->
                     <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     Calendar
-                </a>
+                  </a>
     
-                  <a data-class-pk="{{ class.pk }}" class="members-button bg-gray-200 cursor-pointer text-gray-900 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                  <a data-class-pk="{{ class.pk }}" class="members-button bg-gray-300 cursor-pointer text-gray-900 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                     <!-- Heroicon name: outline/user-group -->
                     <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -203,25 +197,37 @@
                 </div>
               </nav>
             </div>
-            <div class="flex-shrink-0 flex border-t border-gray-200 p-4 overflow-y-auto">
+            
                
-                <div class="flex items-center overflow-y-auto">
-                  <div>
-                    <img class="inline-block h-9 w-9 rounded-full" src="{{class.class_photo.url}}" alt="">
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">{{class.name}}</p>
-                    <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">{{class.subject}}</p>
+            <div class="flex-shrink-0 overflow-y-auto flex border-t border-gray-200 p-3">
+              
+                <div class="flex items-center justify-between ">
+                  
+                  <div class="overflow-hidden ml-2">
+                    <div class="flex justify-center items-center">
+                      <img width="30" height="30" src="https://img.icons8.com/plasticine/100/class.png" alt="class"/>
+                      <p class=" ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate">{{class.name}}</p>
+                    </div>
+                    
+                    <div class="flex ">
+                      <img width="30" height="30" src="https://img.icons8.com/bubbles/50/writer-male.png" alt="writer-male"/>
+                      <p class="text-xs ml-2 font-medium text-gray-500 group-hover:text-gray-700 truncate flex justify-center items-center">{{class.creator}}</p>
+                      
+                    </div>
+                    
                   </div>
                 </div>
               
             </div>
+              
+            
           </div>
         </div>
       </div>
 
 
       <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
+        <!-- Open sidebar div -->
         <div class="lg:hidden">
           <div class="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
             <div>
@@ -238,21 +244,27 @@
             </div>
           </div>
         </div>
+
         <div class="flex-1 relative z-0 flex overflow-hidden">
           <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
             <!-- Start main area-->
             <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-              <div class="h-full border-2 border-gray-200 border-dashed rounded-lg">
+              <div class="h-full border-2 border-gray-200 rounded-lg">
                   <!-- This example requires Tailwind CSS v2.0+ -->
               <div class="bg-gray-100 overflow-hidden sm:rounded-md p-2">
+                
                 <ul role="list" class="divide-y divide-gray-200">
                   {% for membership in class_memberships %}
-                  <li>
-                    <a  class="block hover:bg-gray-50">
+                  <li class="rounded-lg">
+                    <a class="block hover:bg-gray-50 hover:cursor-pointer ">
                       <div class="flex items-center px-4 py-4 sm:px-6">
                         <div class="min-w-0 flex-1 flex items-center">
                           <div class="flex-shrink-0">
-                            <img class="h-12 w-12 rounded-full" src="{{membership.member.avatar.image.url}}" alt="">
+                            <img
+                      class="h-8 w-auto rounded-full fill-gray-100"
+                      src="{% if user.avatar.image %}{{ user.avatar.image.url }}{% else %}{% static "images\icons8-avatar.gif" %}{% endif %}"
+                      alt=""
+                    />
                           </div>
                           <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                             <div>
@@ -273,10 +285,7 @@
                                   <time datetime="2020-01-07">{{membership.join_date}}</time>
                                 </p>
                                 <p class="mt-2 flex items-center text-sm text-gray-500">
-                                  <!-- Heroicon name: solid/check-circle -->
-                                  <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                  </svg>
+                                 
                                   Member with all rights included
                                 </p>
                               </div>

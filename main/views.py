@@ -12,7 +12,7 @@ import json
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Post, Class, Avatar, ClassMembership,Room, RoomMembership
+from .models import Post, Class, Avatar, ClassMembership,Room, RoomMembership, Plan
 import logging
 from django.views.decorators.csrf import ensure_csrf_cookie
 
@@ -356,10 +356,6 @@ def spec_room(request, pk):
     return render(request, "room.html", {"room": spec_room,'room_memberships': room_memberships})
 
 
-@login_required(login_url="login_view")
-def plan(request):
-    current_user = request.user
-    return render(request, "plan.html",{'user': current_user} )  
 
 
 
@@ -408,3 +404,36 @@ def class_calendar(request, pk):
 
     # Render the class_members.html template with the retrieved data
     return render(request, 'class_calendar.html', {'class': my_class, 'class_memberships': class_memberships})
+
+@login_required(login_url="login_view")
+def plan(request):
+    current_user = request.user
+    plans = Plan.objects.filter(user=request.user)
+    return render(request, "plan.html",{'user': current_user, 'plans':plans} )  
+
+@login_required(login_url="login_view")
+def save_plan(request):
+    if request.method == 'POST':
+        activity = request.POST.get('activity')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        status = request.POST.get('status')
+
+        # Check if all required fields are present
+        if activity and start_time and end_time and status:
+            try:
+                # Create a new Plan object associated with the current authenticated user
+                plan = Plan.objects.create(
+                    activity=activity,
+                    start_time=start_time,
+                    end_time=end_time,
+                    status=status,
+                    user=request.user  # Associate the plan with the authenticated user
+                )
+                return JsonResponse({'success': True})
+            except Exception as e:
+                return JsonResponse({'success': False, 'error': str(e)}, status=500)
+        else:
+            return JsonResponse({'success': False, 'error': 'Missing required fields'}, status=400)
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)

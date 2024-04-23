@@ -151,7 +151,7 @@
           <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <a href="{% url 'classes' %}" class="flex items-center flex-shrink-0 px-4">
-                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900   max-w-3xl overflow-hidden ">Classes.</h1>
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-500   max-w-3xl overflow-hidden ">Classes</h1>
               </a>
               <nav class="mt-5 flex-1" aria-label="Sidebar">
                 <div class="px-2 space-y-1">
@@ -184,7 +184,7 @@
                     Members
                 </a>
     
-                  <a  data-class-pk="{{ class.pk }}" class="cursor-pointer class-code-button bg-gray-200 text-gray-900 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                  <a  data-class-pk="{{ class.pk }}" class="cursor-pointer class-code-button bg-gray-300 text-gray-900 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                     <!-- Heroicon name: outline/search-circle -->
                     <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -203,29 +203,37 @@
                 </div>
               </nav>
             </div>
-            <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-               
-                <div class="flex items-center">
-                  <div>
-                    <img class="inline-block h-9 w-9 rounded-full" src="{{class.class_photo.url}}" alt="">
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">{{class.name}}</p>
-                    <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">{{class.subject}}</p>
-                  </div>
-                </div>
+            <div class="flex-shrink-0 overflow-y-auto flex border-t border-gray-200 p-3">
               
-            </div>
+              <div class="flex items-center justify-between ">
+                
+                <div class="overflow-hidden ml-2">
+                  <div class="flex justify-center items-center">
+                    <img width="30" height="30" src="https://img.icons8.com/plasticine/100/class.png" alt="class"/>
+                    <p class=" ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate">{{class.name}}</p>
+                  </div>
+                  
+                  <div class="flex ">
+                    <img width="30" height="30" src="https://img.icons8.com/bubbles/50/writer-male.png" alt="writer-male"/>
+                    <p class="text-xs ml-2 font-medium text-gray-500 group-hover:text-gray-700 truncate flex justify-center items-center">{{class.creator}}</p>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            
+          </div>
           </div>
         </div>
       </div>
 
 
       <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
+        {% comment %} Mobile bar  {% endcomment %}
         <div class="lg:hidden">
           <div class="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
             <div>
-              <h1 class="text-3xl font-extrabold tracking-tight text-gray-900   max-w-3xl overflow-hidden ">Classes.</h1>
+              <h1 class="text-3xl font-extrabold tracking-tight text-gray-500 max-w-3xl overflow-hidden ">Classes</h1>
             </div>
             <div>
               <button type="button" class="-mr-3 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900">
@@ -241,44 +249,40 @@
         <div class="flex-1 relative z-0 flex overflow-hidden">
           <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
             <!-- Start main area-->
-            <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-              <div class="h-full flex justify-center items-center border-2 border-gray-200 border-dashed rounded-lg">
+              <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
+                <div class="h-full flex justify-center items-center border-2 border-gray-200 rounded-lg">
                   <div class="flex justify-center items-center">
-                <div class="w-full max-w-sm ">
-                  <div class="mb-2 flex justify-between items-center">
-                      <label for="website-url" class="text-sm font-medium text-gray-900 ">Class code:</label>
-                  </div>
-                  <div class="flex items-center">
-                      <span class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg ">CODE</span>
-                      <div class="relative w-full">
-                          <input id="website-url" type="text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-e-0 border-gray-300 text-gray-500 dark:text-gray-400 text-sm border-s-0 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " value="{{class.code}}" readonly disabled />
+                      <div class="w-full max-w-sm">
+                          <div class="mb-2 flex justify-between items-center">
+                              <label for="website-url" class="text-sm font-medium text-gray-900 ">Class code:</label>
+                          </div>
+                          <div class="flex items-center">
+                              <span class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg ">CODE</span>
+                              <div class="relative w-full">
+                                  <input id="class-code" type="text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-e-0 border-gray-300 text-gray-500 dark:text-gray-400 text-sm border-s-0 focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " value="{{class.code}}" readonly disabled />
+                              </div>
+                              <button id="copy-button" data-copy-to-clipboard-target="class-code" class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center text-white bg-gray-600 rounded-e-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 border border-gray-700  hover:border-gray-800 dark:hover:border-gray-700" type="button">
+                                  <span id="default-icon">
+                                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                          <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
+                                      </svg>
+                                  </span>
+                                  <span id="success-icon" class="hidden inline-flex items-center">
+                                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                                      </svg>
+                                  </span>
+                              </button>
+                              
+                          </div>
+                            <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Here you can copy your class code</p>
                       </div>
-                      <button data-tooltip-target="tooltip-website-url" data-copy-to-clipboard-target="website-url" class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-e-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 border border-blue-700 dark:border-blue-600 hover:border-blue-800 dark:hover:border-blue-700" type="button">
-                          <span id="default-icon">
-                              <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                  <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
-                              </svg>
-                          </span>
-                          <span id="success-icon" class="hidden inline-flex items-center">
-                              <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                              </svg>
-                          </span>
-                      </button>
-                      <div id="tooltip-website-url" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                          <span id="default-tooltip-message">Copy link</span>
-                          <span id="success-tooltip-message" class="hidden">Copied!</span>
-                          <div class="tooltip-arrow" data-popper-arrow></div>
-                      </div>
-                  </div>
-                  <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Here you can copy your class code</p>
+
+                    </div>
+
                 </div>
-
               </div>
-
-              </div>
-            </div>
-            <!-- End main area -->
+            
           </main>
          
         </div>

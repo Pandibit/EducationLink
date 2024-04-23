@@ -122,3 +122,19 @@ def generate_room_code(sender, instance, **kwargs):
 
 # Register pre-save signal
 models.signals.pre_save.connect(generate_room_code, sender=Room)
+
+
+
+class Plan(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+    activity = models.CharField(max_length=255) 
+    start_time = models.TimeField()  
+    end_time = models.TimeField()    
+    status = models.CharField(max_length=20, choices=[
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+    ])  
+
+    def __str__(self):
+        return self.activity
