@@ -131,10 +131,24 @@ class Plan(models.Model):
     start_time = models.TimeField()  
     end_time = models.TimeField()    
     status = models.CharField(max_length=20, choices=[
-        ('pending', 'Pending'),
-        ('completed', 'Completed'),
-        ('failed', 'Failed'),
+        ('to_do', 'To_do'),
+        ('done', 'Done'),
+        ('doing', 'Doing'),
     ])  
 
     def __str__(self):
         return self.activity
+
+
+class Announcement(models.Model):
+    member = models.ForeignKey(
+        User, related_name="announcements", on_delete=models.CASCADE
+    )
+    specific_class = models.ForeignKey(
+        Class, related_name="announcements", on_delete=models.CASCADE
+    )
+    content = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.member.username} - {self.title} ({self.specific_class.name})"

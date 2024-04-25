@@ -346,6 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
   deleteButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const postId = this.getAttribute("data-post-id");
+      console.log(postId);
       const modal = document.getElementById("delete-post-modal");
       const confirmButton = modal.querySelector("#confirm-delete-btn");
       confirmButton.setAttribute("data-post-id", postId); // Set post ID in confirm button's attribute
@@ -358,6 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   confirmButton.addEventListener("click", function () {
     const postId = this.getAttribute("data-post-id");
+
 
     fetch(`/delete-post/${postId}/`, {
       method: "POST",
@@ -550,3 +552,32 @@ async function downloadImage(imageSrc) {
   }
 }
 
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const dropdownMenuButtons = document.querySelectorAll(".dropdownButton");
+//   const dropdownMenu = document.querySelectorAll(".dropdown");
+
+//   dropdownMenuButtons.forEach(button => {
+//     button.addEventListener('click', function() {
+      
+//       dropdownMenu.classList.remove("hidden");
+//     });
+
+//   });
+// });
+
+function toggleDropdown(postId) {
+  const dropdown = document.getElementById(`dropdown-${postId}`);
+  dropdown.classList.toggle('hidden');
+}
+
+// Event listener for document click
+document.addEventListener('click', function(event) {
+  const dropdownButtons = document.querySelectorAll('.dropdownButton');
+  dropdownButtons.forEach(function(button) {
+      const dropdown = button.nextElementSibling;
+      if (!dropdown.contains(event.target) && event.target !== button) {
+          dropdown.classList.add('hidden');
+      }
+  });
+});

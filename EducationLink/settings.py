@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-q3h4duk(uxdoyfsvvc2$5!@xv0gpfupj1n%&eahqsty*wgk8iz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','127.0.0.1','localhost']
 
 
 
@@ -88,9 +88,13 @@ WSGI_APPLICATION = "EducationLink.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mydatabase',
+        'USER': 'root',
+        'PASSWORD': 'P@ndush1',
+        'HOST': 'localhost',  # Or specify your MySQL host IP address
+        'PORT': '3306',  # Default MySQL port
     }
 }
 
@@ -136,6 +140,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main/static'),
 ]
 
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

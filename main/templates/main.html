@@ -8,20 +8,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="{% static "js/homepage.js" %}"></script>
     <script src="https://kit.fontawesome.com/fe48d315e7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'noto-sans': ['Noto Sans', 'sans-serif'],
+              'raleway': ['Raleway', 'sans-serif'],
+              'roboto': ['Roboto', 'sans-serif'],
+              'poppins': ['Poppins', 'sans-serif'],
+              
+            },
+            colors: {
+              clifford: '#da373d',
+              darkblue: '#11086C'
+            }
+          }
+        }
+      }
+    </script>
+    
   </head>
   <body>
-    <style>
-      @keyframes bounce {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-    </style>
+    
 
     <div class="">
       <div class="relative overflow-hidden">
@@ -55,8 +67,8 @@
                   <ul class="flex items-center cursor-pointer space-x-8">
                   <li class="py-1 cursor-pointer group relative w-max ">
                    
-                    <a href="{% url 'homepage'%}" class="cursor-pointer  font-sans font-bold text-white ">
-                      HOME
+                    <a href="{% url 'homepage'%}" class="cursor-pointer text-base font-raleway font-medium text-white ">
+                      Home
                     </a>
                     <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
                     <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
@@ -64,8 +76,8 @@
 
                   <li class="py-1 cursor-pointer group relative w-max">
                    
-                    <a  href="{% url 'posts'%}"class="cursor-pointer  text-base font-sans font-bold text-white ">
-                      POSTS
+                    <a  href="{% url 'posts'%}"class="cursor-pointer  text-base font-raleway font-medium text-white ">
+                      Posts
                     </a>
                     <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
                     <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
@@ -73,8 +85,8 @@
     
                   <li class="py-1 cursor-pointer group relative w-max">
                     
-                    <a href="{% url 'classes'%}" class="cursor-pointer  text-base font-sans font-bold text-white ">
-                      CLASSES
+                    <a href="{% url 'classes'%}" class="cursor-pointer  text-base font-raleway font-medium text-white ">
+                      Classes
                     </a>
                     <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
                     <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
@@ -82,8 +94,8 @@
     
                   <li class="py-1 cursor-pointer group relative w-max flex ">
                     
-                    <a href="{% url 'chatroom'%}" class="cursor-pointer  text-base font-sans font-bold text-white ">
-                      CHATROOM
+                    <a href="{% url 'chatroom'%}" class="cursor-pointer  text-base font-raleway font-medium text-white ">
+                      Chatroom
                     </a>
                     <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
                     <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
@@ -93,8 +105,8 @@
                   <li class="py-1 cursor-pointer group relative w-max">
 
                    
-                    <a href="{% url 'plan'%}" class="cursor-pointer  text-base font-sans font-bold text-white ">
-                      PLAN
+                    <a href="{% url 'plan'%}" class="cursor-pointer text-base  text-base font-raleway font-medium text-white ">
+                      Plan
                     </a>
                     <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
                     <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
@@ -143,10 +155,10 @@
             <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div class="px-5 pt-4 flex items-center justify-between">
                 <div>
-                  <img class="h-12 w-auto " src="{% static "images/EduLink (8).png" %}">
+                  <img class="h-12 w-auto " src="{% static "images/EduLink (10).png" %}">
                 </div>
                 <div class="-mr-2">
-                  <button type="button" id="close-mobile-menu" class="bg-white rounded-md px-3 p-2 inline-flex items-center justify-center text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
+                  <button type="button" id="close-mobile-menu" class="bg-white rounded-md px-3 p-2 inline-flex items-center justify-center text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-600">
                     <span class="sr-only">Close mobile menu</span>
                     <!-- Heroicon name: outline/x -->
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -157,20 +169,20 @@
               </div>
               <div  class=" pb-3"> 
                 <div class="px-2 space-y-1 flex flex-col justify-center items-center">
-                  <a href="{% url 'homepage'%}" class="{% if request.path == '/homepage' %}border-b border-blue-500 {% else %}border-transparent{% endif %} block  py-2  text-base font-medium text-gray-900 ">Home</a>
+                  <a href="{% url 'homepage'%}" class="{% if request.path == '/homepage' %}border-b border-gray-500 {% else %}border-transparent{% endif %} block  py-2  text-base font-medium text-gray-900 ">Home</a>
     
-                  <a href="{% url 'posts'%}" class="block py-2  text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Posts</a>
+                  <a href="{% url 'posts'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Posts</a>
 
-                  <a href="{% url 'classes'%}" class="block py-2  text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Classes</a>
+                  <a href="{% url 'classes'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Classes</a>
   
-                  <a href="{% url 'chatroom'%}" class="block py-2  text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Rooms</a>
+                  <a href="{% url 'chatroom'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Rooms</a>
 
-                  <a href="{% url 'plan'%}" class="block py-2  text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Plan</a>
+                  <a href="{% url 'plan'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Plan</a>
 
-                  <div></div>
+                  
 
 
-                  <a href="{% url 'user_logout' %}" class="inline-flex items-center px-2 py-2 border border-blue-300  text-base font-medium rounded-md  text-blue-700 hover:bg-blue-100">Log out <i class="fa-solid fa-right-to-bracket px-2"></i></a>
+                  <a href="{% url 'user_logout' %}" class="inline-flex items-center px-2 py-2 border border-gray-500 font-raleway  text-base font-medium rounded-md  text-gray-500 hover:bg-gray-300">Log out <i class="fa-solid fa-right-to-bracket px-2"></i></a>
                 </div>
                 
               </div>
@@ -179,25 +191,25 @@
         </header>
 
         <main>
-          <div class="bg-blue-900 pt-20  lg:overflow-hidden">
+          <div class="bg-blue-900 pt-20 pb-20 lg:overflow-hidden">
             <div class="mx-auto max-w-7xl lg:px-8">
               <div class="lg:grid lg:grid-cols-2 lg:gap-8">
                 <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
                   <div class="lg:pb-20  lg:pt-5">
                     
-                    <h1 class="mt-2 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-2 xl:text-6xl">
-                      <span class="block  ">A better way to</span>
-                      <span class="pb-3 block bg-clip-text text-transparent sm:pb-5  bg-white">elevate your learning</span>
+                    <h1 class="mt-2 text-3xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-2 xl:text-6xl">
+                      <span class="block font-raleway mt-12  ">A better way to</span>
+                      <span class="pb-3 block bg-clip-text text-transparent sm:pb-5 font-raleway bg-white">elevate your learning</span>
                     </h1>
-                    <p class="text-base text-white sm:text-md lg:text-md xl:text-md">Unlock your full potential with our innovative approach to learning. Experience a smarter, more effective way to elevate your skills and knowledge to new heights.</p>
-                    <div class="mt-10 sm:mt-12">
+                    <p class="text-base text-white font-raleway sm:text-md lg:text-md xl:text-md">Unlock your full potential with our innovative approach to learning. Experience a smarter, more effective way to elevate your skills and knowledge to new heights.</p>
+                    <div class="lg:mt-5 sm:mt-12">
                       
-                        <h3 class="mt-2 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-4xl lg:mt-2 xl:text-4xl">Track your learning</h3>
+                        <h3 class="mt-2 text-4xl tracking-tight font-raleway font-extrabold text-white sm:mt-3 sm:text-4xl xl:text-4xl">Track your learning</h3>
                         <div class="mt-2 sm:flex sm:items-start sm:justify-between">
                           <div class="max-w-xl text-md text-white">
-                            <p>Initiate learning journey, monitor progress, and achieve goals efficiently through comprehensive plan management and tracking</p>
+                            <p class="font-raleway">Initiate learning journey, monitor progress, and achieve goals efficiently through comprehensive management </p>
                           </div>
-                          <div class="mt-5 flex justify-center items-center sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+                          <div class="mt-3 flex justify-center items-center sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
                             <button type="button" class="inline-flex items-center px-1  py-1 shadow-sm font-medium rounded-md text-white bg-gradient-blue-400 duration-500 hover:bg-white hover:text-blue-800  text-mkd"><a href="{% url 'plan'%}" >
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 48 48">
                                 <path fill="#E0E0E0" d="M27.8,39.7c-0.1,0-0.2,0-0.4-0.1c-0.2-0.1-0.4-0.3-0.6-0.5l-3.7-8.6l-4.5,4.2C18.5,34.9,18.3,35,18,35c-0.1,0-0.3,0-0.4-0.1C17.3,34.8,17,34.4,17,34l0-22c0-0.4,0.2-0.8,0.6-0.9C17.7,11,17.9,11,18,11c0.2,0,0.5,0.1,0.7,0.3l16,15c0.3,0.3,0.4,0.7,0.3,1.1c-0.1,0.4-0.5,0.6-0.9,0.7l-6.3,0.6l3.9,8.5c0.1,0.2,0.1,0.5,0,0.8c-0.1,0.2-0.3,0.5-0.5,0.6l-2.9,1.3C28.1,39.7,27.9,39.7,27.8,39.7z"></path><path fill="#212121" d="M18,12l16,15l-7.7,0.7l4.5,9.8l-2.9,1.3l-4.3-9.9L18,34L18,12 M18,10c-0.3,0-0.5,0.1-0.8,0.2c-0.7,0.3-1.2,1-1.2,1.8l0,22c0,0.8,0.5,1.5,1.2,1.8C17.5,36,17.8,36,18,36c0.5,0,1-0.2,1.4-0.5l3.4-3.2l3.1,7.3c0.2,0.5,0.6,0.9,1.1,1.1c0.2,0.1,0.5,0.1,0.7,0.1c0.3,0,0.5-0.1,0.8-0.2l2.9-1.3c0.5-0.2,0.9-0.6,1.1-1.1c0.2-0.5,0.2-1.1,0-1.5l-3.3-7.2l4.9-0.4c0.8-0.1,1.5-0.6,1.7-1.3c0.3-0.7,0.1-1.6-0.5-2.1l-16-15C19,10.2,18.5,10,18,10L18,10z"></path>
@@ -212,7 +224,7 @@
                 <div class=" -mb-16  lg:m-0 lg:relative">
                   <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                     <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
-                    <img class="w-full lg:absolute 0 lg:h-full " src="{% static "images/6 SCENE.svg" %}" alt="">
+                    <img class="w-full lg:absolute 0 lg:h-full" src="{% static "images/6 SCENE.svg" %}" alt="">
                   </div>
                 </div>
               </div>
@@ -231,23 +243,23 @@
                     <img src="{% static "images\icons8-developer.gif" %}" class="h-12 w-12" alt="">
                   </div>
                 </div>
-                <h2 class="mt-6 text-3xl font-extrabold text-blue-900 sm:text-4xl">Deliver what our students want every time</h2>
-                <p class="mt-6 text-lg text-gray-500">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore nihil ea rerum ipsa. Nostrum consectetur sequi culpa doloribus omnis, molestiae esse placeat, exercitationem magnam quod molestias quia aspernatur deserunt voluptatibus.</p>
+                <h2 class="mt-6 text-3xl font-extrabold font-raleway text-blue-900 sm:text-4xl">Deliver what our students want every time</h2>
+                <p class="mt-6 text-lg font-raleway text-gray-500">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore nihil ea rerum ipsa. Nostrum consectetur sequi culpa doloribus omnis, molestiae esse placeat, exercitationem magnam quod molestias quia aspernatur deserunt voluptatibus.</p>
                 <div class="mt-12">
                   <dl class="-mx-5 -mt-5 flex flex-wrap justify-around sm:items-center ">
                     <div class="flex flex-col px-5 pt-3 border border-gray-300 rounded-md shadow-md">
                       <dt class="order-2 text-base font-medium text-gray-500 flex items-center">
-                        <p class="flex items- ml-2">Faster</p>
+                        <p class="flex items- ml-2 font-raleway">Faster</p>
                       </dt>
-                      <dd class="order-1 text-2xl font-extrabold text-blue-600 sm:text-3xl">50%</dd>
+                      <dd class="order-1 text-2xl font-extrabold text-blue-600 font-raleway sm:text-3xl">50%</dd>
                     </div>
                     <div class="flex flex-col px-5 pt-3 border border-gray-300 rounded-md shadow-md">
-                      <dt class="order-2 text-base font-medium text-gray-500 ml-2">Simpler</dt>
-                      <dd class="order-1 text-2xl font-extrabold text-blue-600 sm:text-3xl">99.9%</dd>
+                      <dt class="order-2 text-base font-medium  font-raleway text-gray-500 ml-2">Simplier</dt>
+                      <dd class="order-1 text-2xl font-extrabold  font-raleway text-blue-600 sm:text-3xl">99.9%</dd>
                     </div>
                     <div class="flex flex-col px-5 pt-3 border border-gray-300 rounded-md shadow-md">
-                      <dt class="order-2 text-base font-medium text-gray-500 ml-2">Support</dt>
-                      <dd class="order-1 text-2xl font-extrabold text-blue-600 sm:text-3xl">24/7</dd>
+                      <dt class="order-2 text-base font-medium  font-raleway text-gray-500 ml-2">Support</dt>
+                      <dd class="order-1 text-2xl font-extrabold  font-raleway text-blue-600 sm:text-3xl">24/7</dd>
                     </div>
                   </dl>
                 </div>
@@ -261,9 +273,9 @@
           <div class="relative bg-white  w-screen mt-12 ">
             <div class="mx-auto max-w-md mt-24 px-4 text-center sm:px-6 sm:max-w-3xl ">
               <div>
-                <h2 class="text-base  mt-5 font-semibold tracking-wider text-blue-600 uppercase">Tired of traditional learning?</h2>
-                <p class="mt-2 text-3xl font-extrabold text-blue-900 tracking-tight sm:text-4xl"> We got the solution</p>
-                <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">Frustrated with conventional education, seeking innovative, creative, or alternative learning methods outside traditional classroom boundaries for enhanced educational experiences</p>
+                <h2 class="text-base  mt-5 font-semibold tracking-wider text-blue-600  font-raleway uppercase">Tired of traditional learning?</h2>
+                <p class="mt-2 text-3xl font-extrabold text-blue-900  font-raleway tracking-tight sm:text-4xl"> We got the solution</p>
+                <p class="mt-5 max-w-prose mx-auto text-xl  font-raleway text-gray-500">Frustrated with conventional education, seeking innovative, creative, or alternative learning methods outside traditional classroom boundaries for enhanced educational experiences</p>
               </div>
               
                 <div class=" flex justify-center items-center h-full ">
@@ -275,9 +287,9 @@
 
           <div class="relative bg-white  sm:py-16 lg:pt-12">
             <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-              <h2 class="text-base font-semibold tracking-wider text-blue-600 uppercase">Learn faster</h2>
-              <p class="mt-2 text-3xl font-extrabold text-blue-900 tracking-tight sm:text-4xl">Learn faster with Education Link's methods</p>
-              <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">Accelerate your learning journey with Education Link's comprehensive way of learning designed to enhance understanding and retention for optimal results</p>
+              <h2 class="text-base font-semibold tracking-wider  font-raleway text-blue-600 uppercase">Learn faster</h2>
+              <p class="mt-2 text-3xl font-extrabold text-blue-900  font-raleway tracking-tight sm:text-4xl">Learn faster with Education Link's methods</p>
+              <p class="mt-5 max-w-prose mx-auto text-xl  font-raleway text-gray-500">Accelerate your learning journey with Education Link's comprehensive way of learning designed to enhance understanding and retention for optimal results</p>
               <div class="mt-12">
                 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                   
@@ -341,34 +353,34 @@
           </div>
     
           <!-- Blog section -->
-          <div class="bg-white ">
-            <div class="max-w-7xl mx-auto  px-4 sm:pt-12 sm:pb-24 mb-12  sm:px-6 lg:px-8">
-              <h2 class="text-3xl font-extrabold text-blue-900 text-center">Frequently asked questions</h2>
+          <div class="bg-white font-raleway ">
+            <div class="max-w-7xl mx-auto  px-4 sm:pt-18 sm:pb-24 mb-12  sm:px-6 lg:px-8 lg:pt-12">
+              <h2 class="text-3xl font-extrabold text-darkblue text-center">Frequently asked questions</h2>
               <div class="mt-12">
                 <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-3">
                   <div>
-                    <dt class="text-lg leading-6 font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                    <dd class="mt-2 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                    <dt class="text-lg leading-6 font-medium text-darkblue">What are the benefits of online learning?</dt>
+                    <dd class="mt-2 text-base text-gray-500">Flexibility, accessibility, diverse resources, interactive tools, personalized pace, and convenience.</dd>
                   </div>
                   <div>
-                    <dt class="text-lg leading-6 font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                    <dd class="mt-2 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                    <dt class="text-lg leading-6 font-medium text-darkblue">How can students improve time management skills?</dt>
+                    <dd class="mt-2 text-base text-gray-500">Prioritize tasks, set goals, create schedules, limit distractions, and use tools.</dd>
                   </div>
                   <div>
-                    <dt class="text-lg leading-6 font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                    <dd class="mt-2 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                    <dt class="text-lg leading-6 font-medium text-darkblue">What are effective study techniques for exams?</dt>
+                    <dd class="mt-2 text-base text-gray-500"> Practice past papers, summarize notes, use mnemonic devices, and review consistently.</dd>
                   </div>
                   <div>
-                    <dt class="text-lg leading-6 font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                    <dd class="mt-2 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                    <dt class="text-lg leading-6 font-medium text-darkblue">How does Education Link support student success?</dt>
+                    <dd class="mt-2 text-base text-gray-500">Offers interactive courses, provides resources, fosters collaboration, and tracks progress.</dd>
                   </div>
                   <div>
-                    <dt class="text-lg leading-6 font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                    <dd class="mt-2 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                    <dt class="text-lg leading-6 font-medium text-darkblue">Why is continuous learning important?</dt>
+                    <dd class="mt-2 text-base text-gray-500">Keeps skills updated, enhances knowledge, fosters growth mindset, and boosts adaptability.</dd>
                   </div>
                   <div>
-                    <dt class="text-lg leading-6 font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                    <dd class="mt-2 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                    <dt class="text-lg leading-6 font-medium text-darkblue">What are key tips for effective online collaboration?</dt>
+                    <dd class="mt-2 text-base text-gray-500"> Communicate clearly, set expectations, use collaborative tools, and provide constructive feedback.</dd>
                   </div>
           
                   <!-- More questions... -->
@@ -378,7 +390,7 @@
             
           </div>
           <!-- CTA Section -->
-          <div class="relative bg-blue-900 pt-4 pb-16 border-b-2 border-white ">
+          <div class=" font-raleway relative bg-blue-900 pt-4 pb-16 border-b-2 border-white ">
             <div class="relative  h-62  sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
               <img class="w-full h-full " src="{% static "images/DrawKit Vector Illustration Team Work (17).svg" %}" alt="">
               <div aria-hidden="true" class="absolute inset-0  mix-blend-multiply"></div>
@@ -403,7 +415,7 @@
             </div>
           </div>
         </main>
-        <footer class="bg-gray-50" aria-labelledby="footer-heading">
+        <footer class="bg-gray-50  font-raleway" aria-labelledby="footer-heading">
           <h2 id="footer-heading" class="sr-only">Footer</h2>
           <div class="max-w-md mx-auto pt-4 px-4 sm:max-w-7xl sm:px-6 lg:pt-12 lg:px-8">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
