@@ -93,8 +93,8 @@ DATABASES = {
         'NAME': 'mydatabase',
         'USER': 'root',
         'PASSWORD': 'P@ndush1',
-        'HOST': 'localhost',  # Or specify your MySQL host IP address
-        'PORT': '3306',  # Default MySQL port
+        'HOST': 'localhost',  
+        'PORT': '3306',  
     }
 }
 
@@ -116,6 +116,12 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+# Me shto si person te projekti
+# Te marr akses
+# Do ta hedh te hetzneri im
+# IP-n do e kesh te aksesueshme
+# Do te te nis login dhe 
 
 
 # Internationalization
