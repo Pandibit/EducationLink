@@ -86,8 +86,12 @@ WSGI_APPLICATION = "EducationLink.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # Adjust the path as needed
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'rEylSTMjNPPEyEJGVNHAZWqvLojbQCsc',
+        'HOST':'monorail.proxy.rlwy.net',
+        'PORT':'18469',  # Adjust the path as needed
     }
 }
 
