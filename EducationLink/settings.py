@@ -102,7 +102,7 @@ DATABASES = {
         'USER': 'freedb_Pandush',
         'PASSWORD': 'dSNeYus@*RPA2P9',
         'HOST':'sql.freedb.tech',
-        'PORT':'3306',  # Adjust the path as needed
+        'PORT':'3306',  
     }
 }
 
