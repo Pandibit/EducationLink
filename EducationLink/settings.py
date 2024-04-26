@@ -87,20 +87,31 @@ WSGI_APPLICATION = "EducationLink.wsgi.application"
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'railway',
-#         'USER': 'root',
-#         'PASSWORD': 'wtVwmBuFZbzhhertDHdzxnmKilGsJJSZ',
-#         'HOST':'monorail.proxy.rlwy.net',
-#         'PORT':'50869',  # Adjust the path as needed
+#         'NAME': 'defaultdb',
+#         'USER': 'avnadmin',
+#         'PASSWORD': 'AVNS_5q_jWjYYwVTGPEhTpQW',
+#         'HOST':'mysql-30ebba28-pandushbitallari-f46f.e.aivencloud.com',
+#         'PORT':'15881',  # Adjust the path as needed
 #     }
 # }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'freedb_educationlink',
+        'USER': 'freedb_Pandush',
+        'PASSWORD': 'dSNeYus@*RPA2P9',
+        'HOST':'sql.freedb.tech',
+        'PORT':'3306',  # Adjust the path as needed
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
