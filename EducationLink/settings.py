@@ -100,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'freedb_educationlink',
         'USER': 'freedb_Pandush',
-        'PASSWORD': 'dSNeYus@*RPA2P9',
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST':'sql.freedb.tech',
         'PORT':'3306',  
     }
