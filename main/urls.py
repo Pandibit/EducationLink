@@ -36,6 +36,9 @@ urlpatterns = [
     path("delete_plan/<int:plan_id>/", views.delete_plan, name="delete_plan"),
     path('plans/<int:plan_id>/', views.get_plan_details, name='get_plan_details'),
     path('update_plan/<int:plan_id>/', views.update_plan, name='update_plan'),
+    path('contact', views.contact, name='contact'),
+    path('submit_application/', views.submit_application, name='submit_application'),
+    path('create_announcement/', views.create_announcement, name='create_announcement'),
     
 
 ]

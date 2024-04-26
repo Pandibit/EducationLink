@@ -151,4 +151,22 @@ class Announcement(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.member.username} - {self.title} ({self.specific_class.name})"
+        return f"{self.member.username} - {self.content[:50]} ({self.specific_class.name})"
+
+
+class Application(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    subject = models.CharField(max_length=200)
+    message = models.TextField(max_length=500)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Application from {self.first_name} {self.last_name}"
+
+    class Meta:
+        verbose_name = "Application"
+        verbose_name_plural = "Applications"

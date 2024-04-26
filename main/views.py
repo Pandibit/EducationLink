@@ -12,7 +12,7 @@ import json
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Post, Class, Avatar, ClassMembership, Room, RoomMembership, Plan
+from .models import Post, Class, Avatar, ClassMembership, Room, RoomMembership, Plan, Application, Announcement
 import logging
 from django.views.decorators.csrf import ensure_csrf_cookie
 
@@ -406,11 +406,13 @@ def class_announcements(request, pk):
 
     class_memberships = ClassMembership.objects.filter(specific_class=my_class)
 
+    announcements = Announcement.objects.filter(specific_class=my_class)
+
     # Render the class_members.html template with the retrieved data
     return render(
         request,
         "class_announcements.html",
-        {"class": my_class, "class_memberships": class_memberships},
+        {"my_class": my_class, "class_memberships": class_memberships, "announcements": announcements,},
     )
 
 
@@ -520,4 +522,72 @@ def update_plan(request, plan_id):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
+def contact(request):
+    return render(request, 'contact.html')
 
+def submit_application(request):
+    if request.method == 'POST':
+        # Retrieve data from the POST request
+        data = json.loads(request.body)
+
+        # Extract form fields
+        first_name = data.get('first_name', '')
+        last_name = data.get('last_name', '')
+        email = data.get('email', '')
+        phone = data.get('phone', '')
+        subject = data.get('subject', '')
+        message = data.get('message', '')
+
+        # Check if all required fields are present
+        if first_name and last_name and email and subject and message:
+            try:
+                # Create a new Application object
+                application = Application.objects.create(
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    phone=phone,
+                    subject=subject,
+                    message=message
+                )
+                # Prepare JSON response
+                response_data = {
+                    'success': True,
+                    'message': 'Application submitted successfully.',
+                    'application_id': application.id
+                }
+                return JsonResponse(response_data)
+            except Exception as e:
+                return JsonResponse({'success': False, 'error': str(e)}, status=500)
+        else:
+            return JsonResponse({'success': False, 'error': 'Missing required fields'}, status=400)
+
+    # Return error response for unsupported request methods
+    return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
+
+
+
+def create_announcement(request):
+    if request.method == 'POST':
+        data = request.POST
+        content = data.get('content')
+        class_id = data.get('class_id')
+        
+        if not content or not class_id:
+            return JsonResponse({'success': False, 'error': 'Content and class ID are required.'}, status=400)
+
+        try:
+            specific_class = Class.objects.get(pk=class_id)
+            announcement = Announcement.objects.create(
+                member=request.user,
+                specific_class=specific_class,
+                content=content,
+                
+            )
+            return JsonResponse({'success': True, 'message': 'Announcement created successfully.'})
+        except Class.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Class does not exist.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method.'}, status=405)

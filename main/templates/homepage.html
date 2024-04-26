@@ -44,7 +44,7 @@
                 <div class="flex items-center justify-between w-full md:w-auto">
                   <a href="{% url 'homepage'%}">
                   
-                    <img class="h-20 w-auto lg:ml-10 md:ml-5" src="{% static "images/EduLink (8).png" %}" alt="">
+                    <img class="h-20 w-auto lg:ml-10 md:ml-5" src="{% static "images/EduLink (11).png" %}" alt="">
                   </a>
                   <div  class=" flex items-center md:hidden px-3">
                     <button class="inline-flex items-center px-1 py-1 mr-4  text-white  text-base font-medium  rounded-md  duration-500 hover:bg-white hover:text-blue-800">
@@ -92,21 +92,23 @@
                     <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
                   </li>
     
-                  <li class="py-1 cursor-pointer group relative w-max flex ">
-                    
-                    <a href="{% url 'chatroom'%}" class="cursor-pointer  text-base font-raleway font-medium text-white ">
-                      Chatroom
-                    </a>
-                    <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
-                    <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
-
-                  </li>
+                  
 
                   <li class="py-1 cursor-pointer group relative w-max">
 
                    
                     <a href="{% url 'plan'%}" class="cursor-pointer text-base  text-base font-raleway font-medium text-white ">
                       Plan
+                    </a>
+                    <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
+                    <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
+                  </li>
+
+                  <li class="py-1 cursor-pointer group relative w-max">
+
+                   
+                    <a href="{% url 'contact' %}" class="cursor-pointer text-base  text-base font-raleway font-medium text-white ">
+                      Contact
                     </a>
                     <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
                     <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-white group-hover:w-3/6"></span>
@@ -175,11 +177,11 @@
 
                   <a href="{% url 'classes'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Classes</a>
   
-                  <a href="{% url 'chatroom'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Rooms</a>
 
                   <a href="{% url 'plan'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Plan</a>
 
-                  
+                  <a href="{% url 'contact'%}" class="block py-2 font-raleway text-base font-medium text-gray-900 hover:border-b-2 border-gray-300">Contact</a>
+
 
 
                   <a href="{% url 'user_logout' %}" class="inline-flex items-center px-2 py-2 border border-gray-500 font-raleway  text-base font-medium rounded-md  text-gray-500 hover:bg-gray-300">Log out <i class="fa-solid fa-right-to-bracket px-2"></i></a>
@@ -404,7 +406,7 @@
                 
                 <div class="mt-8">
                   <div class="inline-flex rounded-md shadow">
-                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-white text-base font-medium rounded-md text-white bg-gradient-blue duration-500 hover:bg-white hover:text-blue-800">
+                    <a href="{% url 'contact' %}" class="inline-flex items-center justify-center px-5 py-3 border border-white text-base font-medium rounded-md text-white bg-gradient-blue duration-500 hover:bg-white hover:text-blue-800">
                       Visit the help center
                       <!-- Heroicon name: solid/external-link -->
                       <i class="fa-solid fa-handshake-angle px-2"></i>

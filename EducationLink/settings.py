@@ -26,11 +26,9 @@ SECRET_KEY = "django-insecure-q3h4duk(uxdoyfsvvc2$5!@xv0gpfupj1n%&eahqsty*wgk8iz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','127.0.0.1','localhost']
+ALLOWED_HOSTS = [".vercel.app", "127.0.0.1", "localhost", ]
 
-
-
-
+# ".ngrok-free.app"
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main",
-    
 ]
 
 MIDDLEWARE = [
@@ -52,7 +49,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    
 ]
 
 
@@ -87,14 +83,11 @@ WSGI_APPLICATION = "EducationLink.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydatabase',
-        'USER': 'root',
-        'PASSWORD': 'P@ndush1',
-        'HOST': 'localhost',  
-        'PORT': '3306',  
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Adjust the path as needed
     }
 }
 
@@ -117,12 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Me shto si person te projekti
-# Te marr akses
-# Do ta hedh te hetzneri im
-# IP-n do e kesh te aksesueshme
-# Do te te nis login dhe 
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -143,11 +130,11 @@ STATIC_URL = "/static/"
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main/static'),
+    os.path.join(BASE_DIR, "main/static"),
 ]
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

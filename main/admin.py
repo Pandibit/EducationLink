@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Class, Post, Avatar,ClassMembership,Room,RoomMembership,Plan
+from . models import Class, Post, Avatar,ClassMembership,Room,RoomMembership,Plan, Application, Announcement
 # Register your models here.
 
 
@@ -13,4 +13,7 @@ admin.site.register(ClassMembership)
 admin.site.register(Room)
 admin.site.register(RoomMembership)
 admin.site.register(Plan)
+admin.site.register(Application)
+admin.site.register(Announcement)
+
 
