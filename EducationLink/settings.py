@@ -84,14 +84,21 @@ WSGI_APPLICATION = "EducationLink.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'rEylSTMjNPPEyEJGVNHAZWqvLojbQCsc',
+#         'HOST':'monorail.proxy.rlwy.net',
+#         'PORT':'18469',  # Adjust the path as needed
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'rEylSTMjNPPEyEJGVNHAZWqvLojbQCsc',
-        'HOST':'monorail.proxy.rlwy.net',
-        'PORT':'18469',  # Adjust the path as needed
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -130,7 +137,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 
 STATICFILES_DIRS = [
