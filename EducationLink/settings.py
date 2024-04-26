@@ -86,16 +86,16 @@ WSGI_APPLICATION = "EducationLink.wsgi.application"
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'freedb_educationlink',
-        'USER': 'freedb_Pandush',
-        'PASSWORD': 'dSNeYus@*RPA2P9',
-        'HOST':'sql.freedb.tech',
-        'PORT':'3306',  
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'freedb_educationlink',
+#         'USER': 'freedb_Pandush',
+#         'PASSWORD': 'dSNeYus@*RPA2P9',
+#         'HOST':'sql.freedb.tech',
+#         'PORT':'3306',  
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
