@@ -84,16 +84,7 @@ WSGI_APPLICATION = "EducationLink.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'defaultdb',
-#         'USER': 'avnadmin',
-#         'PASSWORD': 'AVNS_5q_jWjYYwVTGPEhTpQW',
-#         'HOST':'mysql-30ebba28-pandushbitallari-f46f.e.aivencloud.com',
-#         'PORT':'15881',  # Adjust the path as needed
-#     }
-# }
+
 
 DATABASES = {
     'default': {
