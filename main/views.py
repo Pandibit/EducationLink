@@ -12,7 +12,7 @@ import json
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Post, Class, Avatar, ClassMembership, Room, RoomMembership, Plan, Application, Announcement
+from .models import Post, Class, Avatar, ClassMembership, Room, RoomMembership, Plan, Application, Announcement, Lection
 import logging
 from django.views.decorators.csrf import ensure_csrf_cookie
 
@@ -23,38 +23,42 @@ def main(request):
 
 def register(request):
     form = CreateUserForm()
-
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Account created!")
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}! Please log in.')
             return redirect("login_view")
+        else:
+            # Detailed errors are added automatically to the form
+            messages.error(request, 'Error creating account. Please check your input.')
 
     context = {"registerform": form}
     return render(request, "register.html", context=context)
 
 
-@ensure_csrf_cookie
+
+
 def login_view(request):
-
     form = LoginForm()
-
     if request.method == "POST":
         form = LoginForm(data=request.POST)
-
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
-
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-
                 return redirect("homepage")
+            else:
+                # This message is crucial for feedback on failed logins
+                messages.error(request, "Invalid username or password.")
+        else:
+            # This message is useful if the form itself is invalid
+            messages.error(request, "Invalid username or password..")
 
     context = {"loginform": form}
-
     return render(request, "login.html", context=context)
 
 
@@ -140,7 +144,7 @@ def update_post(request, post_id):
 
             if dropzone_file:
                 post.dropzone_file = (
-                    dropzone_file  # Update only if a new file is uploaded
+                    dropzone_file  
                 )
             post.save()
             return JsonResponse({"message": "Post updated successfully"})
@@ -218,17 +222,28 @@ def save_class(request):
         pass
 
 
+
 @login_required(login_url="login_view")
 def spec_class(request, pk):
+    # Get the specific class using primary key
     spec_class = get_object_or_404(Class, pk=pk)
+    
+    # Retrieve class memberships associated with the specific class
     class_memberships = ClassMembership.objects.filter(specific_class=spec_class)
+    
+    # Retrieve lections associated with the specific class
+    lections = Lection.objects.filter(specific_class=spec_class)
+
+    # Render response with all collected information
     return render(
         request,
         "class.html",
-        {"class": spec_class, "class_memberships": class_memberships},
+        {
+            "class": spec_class,
+            "class_memberships": class_memberships,
+            "lections": lections  # Pass the lections to the context for use in the template
+        },
     )
-
-
 @login_required
 def save_avatar(request):
     if request.method == "POST":
@@ -591,3 +606,52 @@ def create_announcement(request):
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
     return JsonResponse({'success': False, 'error': 'Invalid request method.'}, status=405)
+
+
+def submit_lection(request):
+    if request.method == 'POST':
+        lesson_text = request.POST.get('lesson_text')
+        class_id = request.POST.get('class_id')
+        image = request.FILES.get('image', None)
+        file = request.FILES.get('file', None)
+
+        # Assuming other validations and setup
+        lection = Lection(
+            creator=request.user,
+            specific_class_id=class_id,
+            lesson_text=lesson_text,
+            image=image if image else None,
+            file=file if file else None
+        )
+        lection.save()
+
+        return JsonResponse({'success': True, 'message': 'Lection created successfully'})
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+
+@require_http_methods(["DELETE"])
+def delete_lection(request, lection_id):
+    try:
+        lection = Lection.objects.get(pk=lection_id)
+        lection.delete()
+        return JsonResponse({'message': 'Lection successfully deleted'}, status=200)
+    except Lection.DoesNotExist:
+        return JsonResponse({'error': 'Lection not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+def delete_announcement(request, pk):
+    try:
+        announcement = Announcement.objects.get(pk=pk)
+        
+        # Check if the user is authorized to delete the announcement
+        if request.user != announcement.member:
+            return JsonResponse({'error': 'You do not have permission to delete this announcement'}, status=403)
+        
+        announcement.delete()
+        return JsonResponse({'message': 'Announcement successfully deleted'}, status=200)
+
+    except Announcement.DoesNotExist:
+        return JsonResponse({'error': 'Announcement not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

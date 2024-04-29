@@ -39,10 +39,10 @@
       <div>
 
         <!--  a New post modal -->
-        <div id="modal-create" class="fixed z-10 inset-0 overflow-y-auto hidden mt-5" aria-labelledby="modal-title" role="dialog" aria-modal="true" >
+        <div id="modal-create" class="fixed z-10 inset-0 overflow-y-auto hidden mt-5 " aria-labelledby="modal-title" role="dialog" aria-modal="true" >
         
     
-          <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" >
+          <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" >
           
        
         
@@ -458,7 +458,7 @@
                         <div id="dropdown-{{ post.pk }}" onclick="toggleDropdown('{{ post.pk }}')"  class="dropdown  hidden absolute  mt-8 ml-10 z-5 w-24  text-base list-none bg-gray-200 divide-y divide-gray-100 rounded-md shadow hover:text-2xl   ">
                           <ul class="py-2" aria-labelledby="dropdown">
                            
-                            <li data-post-id="{{ post.pk }}" class="delete-post-btn justify-start items-center  hover:bg-gray-400">
+                            <li data-post-id="{{ post.pk }}" class="delete-post-btn flex justify-center items-center  hover:bg-gray-400">
                               
                                 <a class="delete-post-btn font-raleway block px-4 py-2 text-xs text-gray-700">
                                   Delete

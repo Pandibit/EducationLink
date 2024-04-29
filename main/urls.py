@@ -39,6 +39,11 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('submit_application/', views.submit_application, name='submit_application'),
     path('create_announcement/', views.create_announcement, name='create_announcement'),
+    path('submit-lection/', views.submit_lection, name='submit_lection'),
+    path('delete-lection/<int:lection_id>/', views.delete_lection, name='delete_lection'),
+    path('delete-announcement/<int:pk>/', views.delete_announcement, name='delete_announcement'),
+
+    
     
 
 ]

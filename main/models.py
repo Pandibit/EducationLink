@@ -120,21 +120,24 @@ def generate_room_code(sender, instance, **kwargs):
         code = str(uuid.uuid4())[:8]
         instance.code = code
 
+
 # Register pre-save signal
 models.signals.pre_save.connect(generate_room_code, sender=Room)
 
 
-
 class Plan(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE) 
-    activity = models.CharField(max_length=255) 
-    start_time = models.TimeField()  
-    end_time = models.TimeField()    
-    status = models.CharField(max_length=20, choices=[
-        ('to_do', 'To_do'),
-        ('done', 'Done'),
-        ('doing', 'Doing'),
-    ])  
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    activity = models.CharField(max_length=255)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ("to_do", "To_do"),
+            ("done", "Done"),
+            ("doing", "Doing"),
+        ],
+    )
 
     def __str__(self):
         return self.activity
@@ -151,7 +154,9 @@ class Announcement(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.member.username} - {self.content[:50]} ({self.specific_class.name})"
+        return (
+            f"{self.member.username} - {self.content[:50]} ({self.specific_class.name})"
+        )
 
 
 class Application(models.Model):
@@ -170,3 +175,19 @@ class Application(models.Model):
     class Meta:
         verbose_name = "Application"
         verbose_name_plural = "Applications"
+
+
+class Lection(models.Model):
+    creator = models.ForeignKey(
+        User, related_name="created_lections", on_delete=models.CASCADE
+    )
+    specific_class = models.ForeignKey(
+        Class, related_name="lections", on_delete=models.CASCADE
+    )
+    lesson_text = models.TextField()
+    image = models.ImageField(upload_to="lections/images/", blank=True, null=True)
+    file = models.FileField(upload_to='lections/files/', blank=True, null=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"Lection by {self.creator.username}: '{self.lesson_text[:50]}' in {self.specific_class.name}"

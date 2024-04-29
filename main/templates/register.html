@@ -91,6 +91,31 @@
 
                     <div class="mx-auto max-w-xs">
                       <form method="post">
+                        {% if registerform.errors %}
+                        <div class="form-errors">
+                            <ul>
+                                {% for field in registerform %}
+                                    {% if field.errors %}
+                                        <li><strong>{{ field.label }}:</strong>
+                                            {% for error in field.errors %}
+                                                <div class="error text-blue-500 font-railway">{{ error }}</div>
+                                            {% endfor %}
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        
+                        {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                            <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                         {% csrf_token %}
 
                         <input
@@ -165,7 +190,7 @@
                 ></div>
               </div>
             </div>
-          </div>
+          </div> 
 
           <footer
             class="bg-gray-100 border-t border-gray-300 mt-12 font-raleway drop-shadow-lg"

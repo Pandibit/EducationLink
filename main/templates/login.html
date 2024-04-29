@@ -80,6 +80,15 @@
                 </div>
 
                 <div class="mx-auto max-w-xs">
+                  {% if messages %}
+                  <div class="messages">
+                      {% for message in messages %}
+                      <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+                          {{ message }}
+                      </div>
+                      {% endfor %}
+                  </div>
+                  {% endif %}
                   <form method="post">
                     {% csrf_token %}
                     <input
@@ -88,12 +97,27 @@
                       name="username"
                       placeholder="Username"
                     />
-                    <input
+                    {% if loginform.username.errors %}
+                    <div class="error-messages">
+                      {% for error in loginform.username.errors %}
+                        <p class="error font-raleway">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                                  <input
                       class="font-raleway w-full px-4 py-3 rounded-md font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="password"
                       name="password"
                       placeholder="Password"
                     />
+                    {% if loginform.password.errors %}
+                    <div class="error-messages">
+                      {% for error in loginform.password.errors %}
+                        <p class="error font-ra">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                    
                     <button
                       type="submit"
                       class="mt-5 tracking-wide font-semibold bg-black text-gray-100 w-full py-2 rounded-md duration-400 border hover:border-black hover:text-black hover:bg-white transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
